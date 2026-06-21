@@ -36,35 +36,31 @@ const stats: StatData[] = [
 function StatCard({ label, pre, big, unit, desc, highlight }: StatData) {
   return (
     <div
-      className={`flex h-full flex-col rounded-lg border p-7 md:p-8 ${
-        highlight ? "border-[#1e3a5f] bg-[#1e3a5f]" : "border-navy/10 bg-white"
-      }`}
+      className="flex h-full flex-col rounded-lg border border-navy/10 bg-white p-7 md:p-8"
+      // 上部ボーダー：共通=ゴールド3px／即日カードのみ赤4px
+      style={{ borderTop: highlight ? "4px solid #b03023" : "3px solid #9a7a3a" }}
     >
       {/* 数字（主役・特大ゴールド） */}
       <p className="flex items-baseline gap-1.5">
-        {pre && (
-          <span className={`text-xl font-extrabold ${highlight ? "text-white/80" : "text-[#1e3a5f]"}`}>{pre}</span>
-        )}
+        {pre && <span className="text-xl font-extrabold text-[#1e3a5f]">{pre}</span>}
         <span className="text-[56px] font-black leading-none tracking-tight text-[#9a7a3a]">{big}</span>
         {unit && <span className="text-2xl font-extrabold text-[#9a7a3a]">{unit}</span>}
       </p>
 
       {/* ラベル */}
-      <span className={`mt-4 text-[15px] font-extrabold tracking-wide ${highlight ? "text-white" : "text-[#1e3a5f]"}`}>
-        {label}
-      </span>
+      <span className="mt-4 text-[15px] font-extrabold tracking-wide text-[#1e3a5f]">{label}</span>
 
-      <span className={`mt-5 h-px w-full ${highlight ? "bg-white/20" : "bg-navy/10"}`} aria-hidden />
+      <span className="mt-5 h-px w-full bg-navy/10" aria-hidden />
 
-      {/* 説明（#1e3a5f／推しカードは白） */}
-      <p className={`mt-5 text-sm leading-relaxed ${highlight ? "text-white" : "text-[#1e3a5f]"}`}>{desc}</p>
+      {/* 説明（#1e3a5f） */}
+      <p className="mt-5 text-sm leading-relaxed text-[#1e3a5f]">{desc}</p>
     </div>
   )
 }
 
 export function Strength() {
   return (
-    <section className="bg-white pt-8 pb-12 md:pt-10 md:pb-14">
+    <section className="bg-white pt-8 pb-6 md:pt-10 md:pb-8">
       <div className="container-lp flex flex-col gap-8">
         <SectionHeading
           eyebrow="諦める前に、まずはご相談ください"
@@ -79,38 +75,46 @@ export function Strength() {
           ))}
         </div>
 
-        {/* 文章訴求ブロック（参考LPの雰囲気：マーカー見出し＋左揃え本文＋細い罫線／カード・ボックス化しない） */}
-        <div className="mx-auto mt-4 flex w-full max-w-[720px] flex-col gap-9 px-4">
-          {/* 見出し（中央・要点をゴールドのマーカーで） */}
-          <h3 className="text-center text-[23px] font-extrabold leading-[1.55] text-[#1e3a5f] md:text-[30px]">
-            <span className="box-decoration-clone bg-[#9a7a3a] px-2.5 py-0.5 text-white">放置している法人</span>
-            に、
-            <br className="hidden md:block" />
-            無駄なコストを割いていませんか？
-            <span className="mt-4 block text-[19px] font-extrabold leading-snug text-[#1e3a5f] md:text-[23px]">
-              今のうちに<span className="text-[#9a7a3a]">価値</span>を確認してみませんか？
-            </span>
+        {/* 文章訴求エリア（1枚の広告：問いかけ→価値提案→安心材料→活用事例へ／カード・装飾・背景なし） */}
+        <div className="mx-auto mt-6 flex w-full max-w-[760px] flex-col items-center px-4 text-center">
+          {/* 問いかけ（設定・大きく） */}
+          <h3 className="text-[30px] font-extrabold leading-[1.45] tracking-tight text-[#1e3a5f] md:text-[44px]">
+            放置している法人に、
+            <br />
+            無駄なコストを
+            <br />
+            割いていませんか？
           </h3>
 
-          <span className="h-px w-full bg-[#9a7a3a]/35" aria-hidden />
+          {/* 価値提案（主役・最大の感情フック／ゴールドは「価値」へ） */}
+          <p className="mt-9 text-[24px] font-extrabold leading-snug tracking-tight text-[#1e3a5f] md:text-[36px]">
+            今のうちに、
+            <br className="md:hidden" />
+            <span className="inline-block border-b-[3px] border-[#9a7a3a] pb-1.5">
+              <span className="text-[#9a7a3a]">価値</span>を確認してみませんか？
+            </span>
+          </p>
 
-          {/* 本文（左揃え・読ませる・指定語のみゴールド強調） */}
-          <div className="flex flex-col gap-5 text-left text-[15px] leading-[2.1] text-[#1e3a5f] md:text-[17px]">
+          <span className="mt-12 h-px w-full bg-[#9a7a3a]/35" aria-hidden />
+
+          {/* 安心材料（本文・少し大きく・#1e3a5f・指定語のみゴールド） */}
+          <div className="mt-10 flex flex-col gap-6 text-[16px] leading-[2] text-[#1e3a5f] md:text-[19px]">
             <p>
               赤字法人や休眠法人だからといって、
+              <br className="hidden md:block" />
               <span className="font-extrabold text-[#9a7a3a]">価値</span>がないとは限りません。
             </p>
             <p>
               弊社では<span className="font-extrabold text-[#9a7a3a]">1,000社以上</span>のご相談実績があり、
+              <br className="hidden md:block" />
               <span className="font-extrabold text-[#9a7a3a]">全国オンライン対応</span>により多くのご紹介もいただいております。
             </p>
             <p>
               解散か放置を決める前に、まずは<span className="font-extrabold text-[#9a7a3a]">10分</span>で終わる
+              <br className="hidden md:block" />
               <span className="font-extrabold text-[#9a7a3a]">スピード査定</span>をお試しください。
             </p>
           </div>
-
-          <span className="h-px w-full bg-[#9a7a3a]/35" aria-hidden />
         </div>
       </div>
     </section>

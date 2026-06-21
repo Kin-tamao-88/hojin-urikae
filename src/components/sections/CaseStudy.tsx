@@ -25,7 +25,7 @@ const cases = [
 
 export function CaseStudy() {
   return (
-    <section className="bg-white pt-10 pb-20 md:pt-12 md:pb-24">
+    <section className="bg-white pt-8 pb-20 md:pt-10 md:pb-24">
       <div className="container-lp flex flex-col gap-12">
         <SectionHeading
           eyebrow="活用事例"
