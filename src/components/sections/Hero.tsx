@@ -34,15 +34,15 @@ const PAGE_BG = "#fafafa"
 const cards = [
   { icon: iconRedCompany, label: "赤字法人", ok: true },
   { icon: iconDebt, label: "債務あり", ok: true },
-  { icon: iconNationwide, label: "全国対応\n47都道府県", ok: false },
+  { icon: iconNationwide, label: "全国対応\nオンラインで完結", ok: false, highlight: true },
   { icon: iconProfessionalSupport, label: "士業連携で\n安心サポート", ok: false },
 ]
 
 const stats: { value: string; label: string; note: string; vSize?: number }[] = [
   { value: "300件以上", label: "法人売却相談", note: "※2025年度実績" },
-  { value: "47都道府県", label: "全国対応", note: "", vSize: 32 },
-  { value: "100%", label: "秘密厳守", note: "プライバシー徹底保護" },
-  { value: "即日対応", label: "最短査定", note: "スピード査定", vSize: 36 },
+  { value: "85万円以上", label: "平均買取実績", note: "赤字・負債ありでも", vSize: 32 },
+  { value: "最低10万円以上", label: "買取保証アリ", note: "過去買取実績", vSize: 28 },
+  { value: "即日対応", label: "最短査定", note: "当日現金化OK", vSize: 36 },
 ]
 
 export function Hero() {
@@ -91,11 +91,9 @@ export function Hero() {
               {/* メインコピー */}
               <p className="hero-heading-lead">放置している法人を</p>
 
-              {/* 高額 → 1行目 */}
-              <div style={{ paddingLeft: "40px", lineHeight: 1.05, letterSpacing: "-0.02em" }}>
-                <span style={{ fontSize: "100px", fontWeight: 900, color: "#c0341a", display: "block" }}>高額</span>
-                {/* で売却しませんか？ → 2行目・ハイライト付き */}
-                <span style={{ position: "relative", display: "inline-block", fontSize: "72px", fontWeight: 900, lineHeight: 1.1, color: "#1a1a1a", whiteSpace: "nowrap" }}>
+              <div style={{ paddingLeft: "40px", letterSpacing: "-0.02em", lineHeight: 1.1 }}>
+                <span style={{ fontSize: "100px", fontWeight: 900, color: "#c0341a" }}>高額</span>
+                <span style={{ position: "relative", display: "inline-block", fontSize: "62px", fontWeight: 900, color: "#1a1a1a", whiteSpace: "nowrap", verticalAlign: "baseline" }}>
                   <span aria-hidden style={{ position: "absolute", left: 0, right: 0, bottom: "0.05em", height: "0.28em", background: "rgba(200,165,38,0.80)", borderRadius: "1px 2px 1px 2px", transform: "rotate(-0.3deg)", zIndex: 0 }} />
                   <span style={{ position: "relative" }}>で売却しませんか？</span>
                 </span>
@@ -116,8 +114,15 @@ export function Hero() {
                   >
                     <img src={card.icon} alt="" aria-hidden className="h-[40px] w-[40px] shrink-0 object-contain" />
                     <span className="whitespace-pre-line text-[16px] font-extrabold leading-tight" style={{ color: NAVY }}>
-                      {card.label}
-                      {card.ok && <span style={{ color: GOLD }}>OK</span>}
+                      {card.label.split('\n').map((line, i) => (
+                        <span key={i} style={{ display: 'block' }}>
+                          {card.ok && i === 0 ? (
+                            <>{line.replace('OK', '')}<span style={{ color: RED }}>OK</span></>
+                          ) : card.highlight && i === 1 ? (
+                            <span style={{ color: RED }}>{line}</span>
+                          ) : line}
+                        </span>
+                      ))}
                     </span>
                   </div>
                 ))}
@@ -177,13 +182,13 @@ export function Hero() {
               style={{ transform: "rotate(-6deg)", transformOrigin: "left center" }}
               aria-hidden
             >
-              <span className="whitespace-nowrap leading-none" style={{ fontSize: "37px", fontWeight: 800, color: RED }}>
+              <span className="whitespace-nowrap leading-none" style={{ fontSize: "22px", fontWeight: 800, color: RED }}>
                 査定最高額
               </span>
-              <div className="relative mt-[12px]">
+              <div className="relative mt-[8px]">
                 <svg
-                  className="absolute -left-[10px] -bottom-[12px] -z-10 h-[48px] w-[420px]"
-                  viewBox="0 0 420 50"
+                  className="absolute -left-[10px] -bottom-[12px] -z-10 h-[28px] w-[260px]"
+                  viewBox="0 0 260 50"
                   fill="none"
                   preserveAspectRatio="none"
                 >
@@ -196,20 +201,15 @@ export function Hero() {
                   <path d="M4 44 C 60 36, 130 30, 220 20 C 300 12, 360 10, 415 4 C 390 18, 330 22, 248 30 C 158 38, 72 42, 10 50 Z" fill="url(#heroBrush)" opacity="0.95" />
                   <path d="M6 42 C 80 34, 180 26, 310 16 C 360 12, 395 8, 414 5 C 400 14, 365 18, 318 22 C 200 30, 90 38, 12 47 Z" fill="#E5C04A" opacity="0.35" />
                   <path d="M30 37 C 140 30, 260 23, 380 12" stroke="#ffffff" strokeOpacity="0.4" strokeWidth="1.6" strokeLinecap="round" />
-                  <path d="M22 42 C 150 34, 270 28, 392 16" stroke="#846526" strokeOpacity="0.5" strokeWidth="1.3" strokeLinecap="round" />
-                  <path d="M318 19 l 16 -2 M348 16 l 20 -3 M384 11 l 18 -3" stroke="#E5C04A" strokeWidth="3" strokeLinecap="round" opacity="0.85" />
                 </svg>
                 <span className="relative whitespace-nowrap leading-none" style={{ color: RED }}>
-                  <span style={{ fontSize: "84px", fontWeight: 900 }}>1,100</span>
-                  <span style={{ fontSize: "52px", fontWeight: 700, marginLeft: "2px" }}>万円</span>
-                  <span style={{ fontSize: "52px", fontWeight: 700, marginLeft: "4px" }}>！</span>
+                  <span style={{ fontSize: "52px", fontWeight: 900 }}>1,100</span>
+                  <span style={{ fontSize: "32px", fontWeight: 700, marginLeft: "2px" }}>万円</span>
+                  <span style={{ fontSize: "32px", fontWeight: 700, marginLeft: "4px" }}>！</span>
                 </span>
               </div>
-              <span className="mt-[16px] whitespace-nowrap leading-none" style={{ fontSize: "24px", fontWeight: 700, color: NAVY }}>
+              <span className="mt-[10px] whitespace-nowrap leading-none" style={{ fontSize: "15px", fontWeight: 700, color: NAVY }}>
                 当日払いの実績アリ
-              </span>
-              <span className="mt-[8px] self-center whitespace-nowrap" style={{ fontSize: "13px", fontWeight: 600, color: NAVY }}>
-                （負債有り法人の実績）
               </span>
             </div>
 
