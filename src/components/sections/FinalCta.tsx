@@ -1,137 +1,235 @@
-import { useState } from "react"
-import { ChevronRight } from "lucide-react"
+import { useState } from 'react';
+import { Mail, Phone, Lock, Clock, CheckCircle } from 'lucide-react';
+
+const trustItems = [
+  { icon: <Clock size={18} color="#e8550a" strokeWidth={2} />, text: '最短即日対応' },
+  { icon: <Lock size={18} color="#e8550a" strokeWidth={2} />, text: '秘密厳守・NDA締結' },
+  { icon: <CheckCircle size={18} color="#e8550a" strokeWidth={2} />, text: '相談・査定 完全無料' },
+];
 
 export function FinalCta() {
-  const [agreed, setAgreed] = useState(false)
+  const [form, setForm] = useState({
+    company: '',
+    name: '',
+    phone: '',
+    email: '',
+    message: '',
+  });
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = () => {
+    // TODO: Supabase連携
+    setSubmitted(true);
+  };
 
   return (
-    <section id="contact" style={{ background: "#f5f2ec", paddingTop: "56px", paddingBottom: "64px" }}>
-      <div className="container-lp" style={{ maxWidth: "720px", margin: "0 auto" }}>
+    <section id="contact" style={{ background: '#fff8f5', padding: '80px 0' }}>
+      <div style={{ maxWidth: 860, margin: '0 auto', padding: '0 24px' }}>
 
         {/* ヘッダー */}
-        <div style={{ textAlign: "center", marginBottom: "36px" }}>
-          <h2 style={{ fontSize: "36px", fontWeight: 900, color: "#1e3a5f", margin: 0 }}>
-            無料お申し込み<span style={{ color: "#b03023" }}>フォーム</span>
-          </h2>
-          <p style={{ fontSize: "13px", color: "#888", marginTop: "10px" }}>
-            ※ 法人口座をお持ちでない場合、買取対象外となりますのでお申し込みいただけません。
+        <div style={{ textAlign: 'center', marginBottom: 48 }}>
+          <p style={{
+            color: '#e8550a',
+            fontWeight: 700,
+            fontSize: '0.85rem',
+            letterSpacing: '0.08em',
+            marginBottom: 12,
+          }}>
+            CONTACT
           </p>
+          <h2 style={{
+            fontWeight: 900,
+            fontSize: 'clamp(1.6rem, 4vw, 2.4rem)',
+            color: '#1a1a1a',
+            lineHeight: 1.4,
+            margin: '0 0 16px',
+          }}>
+            まずは<span style={{ color: '#e8550a' }}>無料で相談</span>してみませんか？
+          </h2>
+          <p style={{ color: '#555', fontSize: '0.95rem', lineHeight: 1.7, margin: 0 }}>
+            秘密厳守・相談無料で、あなたの状況に合わせた最適なご提案をいたします。
+            <br />
+            しつこい営業は一切いたしません。
+          </p>
+
+          {/* トラストバッジ */}
+          <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            gap: 16,
+            marginTop: 24,
+            flexWrap: 'wrap',
+          }}>
+            {trustItems.map((item, i) => (
+              <div key={i} style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 6,
+                background: '#fff0ea',
+                border: '1px solid #f5d5c0',
+                borderRadius: 999,
+                padding: '6px 16px',
+              }}>
+                {item.icon}
+                <span style={{ color: '#e8550a', fontSize: '0.85rem', fontWeight: 600 }}>{item.text}</span>
+              </div>
+            ))}
+          </div>
         </div>
 
-        {/* フォーム */}
-        <div style={{ background: "#ffffff", borderRadius: "12px", padding: "36px 40px", boxShadow: "0 2px 16px rgba(0,0,0,0.06)" }}>
+        {/* フォームカード */}
+        {!submitted ? (
+          <div style={{
+            background: '#ffffff',
+            borderRadius: 20,
+            padding: 'clamp(24px, 5vw, 48px)',
+            boxShadow: '0 4px 24px rgba(0,0,0,0.08)',
+            border: '1px solid #f0e8e0',
+          }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
 
-          {/* 会社名 */}
-          <div style={{ display: "grid", gridTemplateColumns: "180px 1fr", gap: "16px", alignItems: "center", marginBottom: "20px" }}>
-            <label style={{ fontSize: "15px", fontWeight: 700, color: "#1e3a5f", display: "flex", alignItems: "center", gap: "8px" }}>
-              会社名
-              <span style={{ background: "#b03023", color: "#fff", fontSize: "11px", fontWeight: 700, padding: "2px 8px", borderRadius: "2px" }}>必須</span>
-            </label>
-            <input
-              type="text"
-              placeholder="例：株式会社サンプル"
-              style={{ border: "1px solid #d1ccc4", borderRadius: "6px", padding: "12px 14px", fontSize: "15px", width: "100%", boxSizing: "border-box", outline: "none" }}
-            />
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }} className="fct-row">
+                <div>
+                  <label style={labelStyle}>法人名 <span style={{ color: '#e8550a' }}>*</span></label>
+                  <input name="company" value={form.company} onChange={handleChange} placeholder="株式会社〇〇" style={inputStyle} />
+                </div>
+                <div>
+                  <label style={labelStyle}>お名前 <span style={{ color: '#e8550a' }}>*</span></label>
+                  <input name="name" value={form.name} onChange={handleChange} placeholder="山田 太郎" style={inputStyle} />
+                </div>
+              </div>
+
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }} className="fct-row">
+                <div>
+                  <label style={labelStyle}>電話番号 <span style={{ color: '#e8550a' }}>*</span></label>
+                  <input name="phone" value={form.phone} onChange={handleChange} placeholder="090-0000-0000" style={inputStyle} type="tel" />
+                </div>
+                <div>
+                  <label style={labelStyle}>メールアドレス</label>
+                  <input name="email" value={form.email} onChange={handleChange} placeholder="example@mail.com" style={inputStyle} type="email" />
+                </div>
+              </div>
+
+              <div>
+                <label style={labelStyle}>ご相談内容（任意）</label>
+                <textarea
+                  name="message"
+                  value={form.message}
+                  onChange={handleChange}
+                  placeholder="法人の状況・売却のご希望など、お気軽にご記入ください。"
+                  rows={4}
+                  style={{ ...inputStyle, resize: 'vertical', minHeight: 100 }}
+                />
+              </div>
+
+              <button
+                onClick={handleSubmit}
+                style={{
+                  width: '100%',
+                  background: '#e8550a',
+                  color: '#fff',
+                  fontWeight: 900,
+                  fontSize: 'clamp(1rem, 2.5vw, 1.2rem)',
+                  border: 'none',
+                  borderRadius: 10,
+                  padding: '18px 32px',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: 10,
+                  transition: 'background 0.18s',
+                }}
+                onMouseOver={(e) => ((e.currentTarget as HTMLButtonElement).style.background = '#c94208')}
+                onMouseOut={(e) => ((e.currentTarget as HTMLButtonElement).style.background = '#e8550a')}
+              >
+                <Mail size={20} strokeWidth={2} />
+                無料で査定を申し込む
+                <span style={{ fontSize: '1.3em', lineHeight: 1 }}>›</span>
+              </button>
+
+              <p style={{ textAlign: 'center', fontSize: '0.78rem', color: '#aaa', margin: 0 }}>
+                簡単60秒入力・しつこい営業は一切いたしません
+              </p>
+            </div>
           </div>
-
-          {/* ご担当者様氏名 */}
-          <div style={{ display: "grid", gridTemplateColumns: "180px 1fr", gap: "16px", alignItems: "center", marginBottom: "20px" }}>
-            <label style={{ fontSize: "15px", fontWeight: 700, color: "#1e3a5f", display: "flex", alignItems: "center", gap: "8px" }}>
-              ご担当者様氏名
-              <span style={{ background: "#b03023", color: "#fff", fontSize: "11px", fontWeight: 700, padding: "2px 8px", borderRadius: "2px" }}>必須</span>
-            </label>
-            <input
-              type="text"
-              placeholder="例：山田 太郎"
-              style={{ border: "1px solid #d1ccc4", borderRadius: "6px", padding: "12px 14px", fontSize: "15px", width: "100%", boxSizing: "border-box", outline: "none" }}
-            />
+        ) : (
+          <div style={{
+            background: '#ffffff',
+            borderRadius: 20,
+            padding: '60px 40px',
+            textAlign: 'center',
+            border: '1px solid #f0e8e0',
+          }}>
+            <CheckCircle size={56} color="#e8550a" strokeWidth={1.5} style={{ margin: '0 auto 20px' }} />
+            <h3 style={{ fontWeight: 900, fontSize: '1.5rem', color: '#1a1a1a', marginBottom: 12 }}>
+              お問い合わせありがとうございます
+            </h3>
+            <p style={{ color: '#555', fontSize: '0.95rem', lineHeight: 1.8 }}>
+              内容を確認の上、担当者よりご連絡いたします。
+              <br />
+              通常1営業日以内にご返信いたします。
+            </p>
           </div>
+        )}
 
-          {/* 電話番号 */}
-          <div style={{ display: "grid", gridTemplateColumns: "180px 1fr", gap: "16px", alignItems: "center", marginBottom: "20px" }}>
-            <label style={{ fontSize: "15px", fontWeight: 700, color: "#1e3a5f", display: "flex", alignItems: "center", gap: "8px" }}>
-              電話番号
-              <span style={{ background: "#b03023", color: "#fff", fontSize: "11px", fontWeight: 700, padding: "2px 8px", borderRadius: "2px" }}>必須</span>
-            </label>
-            <input
-              type="tel"
-              placeholder="例：090-1234-5678"
-              style={{ border: "1px solid #d1ccc4", borderRadius: "6px", padding: "12px 14px", fontSize: "15px", width: "100%", boxSizing: "border-box", outline: "none" }}
-            />
-          </div>
-
-          {/* メールアドレス */}
-          <div style={{ display: "grid", gridTemplateColumns: "180px 1fr", gap: "16px", alignItems: "center", marginBottom: "20px" }}>
-            <label style={{ fontSize: "15px", fontWeight: 700, color: "#1e3a5f", display: "flex", alignItems: "center", gap: "8px" }}>
-              メールアドレス
-              <span style={{ background: "#b03023", color: "#fff", fontSize: "11px", fontWeight: 700, padding: "2px 8px", borderRadius: "2px" }}>必須</span>
-            </label>
-            <input
-              type="email"
-              placeholder="例：sample@example.com"
-              style={{ border: "1px solid #d1ccc4", borderRadius: "6px", padding: "12px 14px", fontSize: "15px", width: "100%", boxSizing: "border-box", outline: "none" }}
-            />
-          </div>
-
-          {/* ご質問など */}
-          <div style={{ display: "grid", gridTemplateColumns: "180px 1fr", gap: "16px", alignItems: "flex-start", marginBottom: "28px" }}>
-            <label style={{ fontSize: "15px", fontWeight: 700, color: "#1e3a5f", display: "flex", alignItems: "center", gap: "8px", paddingTop: "12px" }}>
-              ご質問など
-              <span style={{ background: "#888", color: "#fff", fontSize: "11px", fontWeight: 700, padding: "2px 8px", borderRadius: "2px" }}>任意</span>
-            </label>
-            <textarea
-              placeholder="ご質問がございましたら、こちらにご記入ください"
-              rows={4}
-              style={{ border: "1px solid #d1ccc4", borderRadius: "6px", padding: "12px 14px", fontSize: "15px", width: "100%", boxSizing: "border-box", outline: "none", resize: "vertical" }}
-            />
-          </div>
-
-          {/* プライバシーポリシー */}
-          <div style={{ display: "flex", alignItems: "center", gap: "10px", justifyContent: "center", marginBottom: "28px" }}>
-            <input
-              type="checkbox"
-              id="privacy"
-              checked={agreed}
-              onChange={(e) => setAgreed(e.target.checked)}
-              style={{ width: "18px", height: "18px", cursor: "pointer" }}
-            />
-            <label htmlFor="privacy" style={{ fontSize: "14px", color: "#555", cursor: "pointer" }}>
-              <span style={{ background: "#b03023", color: "#fff", fontSize: "11px", fontWeight: 700, padding: "2px 8px", borderRadius: "2px", marginRight: "8px" }}>必須</span>
-              プライバシーポリシーに同意する
-            </label>
-          </div>
-
-          {/* 送信ボタン */}
-          <button
-            disabled={!agreed}
+        {/* 電話番号 */}
+        <div style={{ textAlign: 'center', marginTop: 40 }}>
+          <p style={{ color: '#888', fontSize: '0.85rem', marginBottom: 8 }}>
+            お電話でのご相談はこちら（受付 9:00〜18:00）
+          </p>
+          <a
+            href="tel:03-XXXX-XXXX"
             style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: "8px",
-              width: "100%",
-              padding: "20px",
-              borderRadius: "50px",
-              background: agreed ? "#C9A84C" : "#ccc",
-              color: "#ffffff",
-              fontSize: "22px",
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 10,
+              color: '#e8550a',
               fontWeight: 900,
-              border: "none",
-              cursor: agreed ? "pointer" : "not-allowed",
-              letterSpacing: "0.05em",
-              transition: "background 0.2s",
+              fontSize: 'clamp(1.4rem, 4vw, 2rem)',
+              textDecoration: 'none',
+              letterSpacing: '0.02em',
             }}
           >
-            査定スタート！
-            <ChevronRight size={24} />
-          </button>
-
-          <p style={{ textAlign: "center", fontSize: "12px", color: "#999", marginTop: "12px" }}>
-            査定だけでもOK｜しつこい営業は一切いたしません
-          </p>
-
+            <Phone size={28} strokeWidth={2} />
+            03-XXXX-XXXX
+          </a>
         </div>
+
       </div>
+
+      <style>{`
+        @media (max-width: 600px) {
+          .fct-row {
+            grid-template-columns: 1fr !important;
+          }
+        }
+      `}</style>
     </section>
-  )
+  );
 }
+
+const labelStyle: React.CSSProperties = {
+  display: 'block',
+  fontWeight: 700,
+  fontSize: '0.85rem',
+  color: '#1a1a1a',
+  marginBottom: 6,
+};
+
+const inputStyle: React.CSSProperties = {
+  width: '100%',
+  border: '1.5px solid #e0d8d0',
+  borderRadius: 8,
+  padding: '12px 14px',
+  fontSize: '0.95rem',
+  color: '#1a1a1a',
+  background: '#fafafa',
+  outline: 'none',
+  boxSizing: 'border-box',
+  fontFamily: 'inherit',
+};

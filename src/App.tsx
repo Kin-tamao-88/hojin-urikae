@@ -1,5 +1,6 @@
 import { Footer } from "./components/Footer"
 import { Hero } from "./components/sections/Hero"
+import { HopeSection } from "./components/sections/HopeSection"
 import { Pain } from "./components/sections/Pain"
 import { Hope } from "./components/sections/Hope"
 import { Comparison } from "./components/sections/Comparison"
@@ -15,6 +16,7 @@ function App() {
     <div className="flex min-h-screen flex-col">
       <main className="flex-1">
         <Hero />
+        <HopeSection />
         <Pain />
         <Hope />
         <Comparison />

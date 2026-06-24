@@ -1,124 +1,171 @@
-import { Check, Shield } from "lucide-react"
-import painCost from "../../assets/icons/pain/icon-pain-cost.png"
-import painDecline from "../../assets/icons/pain/icon-pain-decline.png"
-import painRestricted from "../../assets/icons/pain/icon-pain-restricted.png"
-import painProcedure from "../../assets/icons/pain/icon-pain-procedure.png"
+import { Mail, ChevronRight, AlertCircle } from "lucide-react"
+import iconGraphDown from "../../assets/icons/icon-graph-down.png"
+import iconDebt from "../../assets/icons/icon-debt.png"
+import iconSleeping from "../../assets/icons/icon-sleeping.png"
+import iconTax from "../../assets/icons/icon-tax.png"
+import iconElderly from "../../assets/icons/icon-elderly.png"
+import iconSuccessor from "../../assets/icons/icon-successor.png"
 
-type Seg = { t: string; hi?: boolean }
+const ORANGE = "#e8550a"
+const NAVY = "#1a2744"
+const DARK = "#1a1a1a"
+const BG = "#fff8f5"
 
-/* 悩みアイコンは PNG 画像（assets/icons/pain）へ置換済み */
-const pains: { img: string; line1: string; line2: Seg[]; desc: string }[] = [
+// 上段3つ：大タイトル強調スタイル
+const topItems = [
   {
-    img: painCost,
-    line1: "会社を使っていないのに",
-    line2: [{ t: "毎年" }, { t: "維持費", hi: true }, { t: "だけが掛かる" }],
-    desc: "法人住民税や決算費用など、使っていなくても赤字続きになる",
+    icon: iconGraphDown,
+    title: "赤字法人",
+    desc: "業績が赤字の状態でも、事業価値を適切に評価し、売却できる可能性があります。",
+    iconSize: 72,
+    titleSize: "2.6rem",
   },
   {
-    img: painDecline,
-    line1: "赤字続きで",
-    line2: [{ t: "事業継続", hi: true }, { t: "が難しい" }],
-    desc: "赤字続きで、資金や借入の見通しが立たない",
+    icon: iconDebt,
+    title: "債務超過",
+    desc: "負債が資産を上回る状態でも、再生ノウハウを持つ買い手につなぐことが可能です。",
+    iconSize: 64,
+    titleSize: "2.2rem",
   },
   {
-    img: painRestricted,
-    line1: "税金や借入金の問題で",
-    line2: [{ t: "身動き", hi: true }, { t: "が取れない" }],
-    desc: "税金の滞納や借入金の問題で、事業の身動きが取れない",
-  },
-  {
-    img: painProcedure,
-    line1: "解散・清算の手続きが",
-    line2: [{ t: "面倒", hi: true }, { t: "で進められない" }],
-    desc: "解散・清算の手続きが面倒で、やるべきことが進められない",
+    icon: iconSleeping,
+    title: "休眠法人",
+    desc: "長期間事業を停止している法人でも、価値を見出す買い手が見つかる可能性があります。",
+    iconSize: 68,
+    titleSize: "2.4rem",
   },
 ]
 
-const CARD_SHADOW = "0 4px 20px rgba(0,0,0,0.06)"
+// 下段3つ：標準スタイル
+const bottomItems = [
+  {
+    icon: iconTax,
+    title: "税金滞納",
+    desc: "税金の滞納がある場合でも、専門家と連携し、適切な解決策をご提案します。",
+  },
+  {
+    icon: iconElderly,
+    title: "代表者高齢",
+    desc: "代表者の高齢化により事業承継にお悩みの法人も、スムーズな売却をサポートします。",
+  },
+  {
+    icon: iconSuccessor,
+    title: "後継者不在",
+    desc: "後継者がいない法人でも、従業員や取引先の雇用・取引を守りながら売却が可能です。",
+  },
+]
 
 export function Pain() {
   return (
-    <section className="bg-white py-20 md:py-24">
-      <div className="container-lp flex flex-col gap-14">
-        {/* ───────── セクション見出し ───────── */}
-        <div className="flex flex-col items-center gap-5 text-center">
-          <div className="flex items-center gap-3">
-            <span className="h-[2px] w-8 rounded-lg bg-cta" aria-hidden />
-            <span className="rounded-lg bg-navy px-6 py-2 text-sm font-extrabold tracking-wide text-white">
-              こんなお悩みありませんか？
+    <section style={{ background: BG, padding: "64px 40px" }}>
+      <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+
+        {/* ヘッダー */}
+        <div style={{ textAlign: "center", marginBottom: "48px" }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "10px", marginBottom: "14px" }}>
+            <span style={{ width: "32px", height: "1px", background: ORANGE }} />
+            <span style={{ fontSize: "13px", fontWeight: 700, color: ORANGE, letterSpacing: "0.1em" }}>
+              赤字・債務・休眠法人もご相談可能
             </span>
-            <span className="h-[2px] w-8 rounded-lg bg-cta" aria-hidden />
+            <span style={{ width: "32px", height: "1px", background: ORANGE }} />
           </div>
-          <h2 className="text-3xl font-extrabold leading-tight tracking-tight text-navy md:text-[40px]">
-            会社を運営していて、こんな
-            <span className="text-cta">お悩み</span>はありませんか？
+          <h2 style={{ fontSize: "2.8rem", fontWeight: 900, color: DARK, lineHeight: 1.25, margin: "0 0 16px" }}>
+            こんな法人でも<br />
+            <span style={{ color: ORANGE }}>売却できる可能性</span>があります
           </h2>
+          <p style={{ fontSize: "1rem", color: "#555", lineHeight: 1.85, margin: 0 }}>
+            一般的に売却が難しいとされる法人でも、当社の独自ネットワークとノウハウにより、<br />
+            多くの法人の売却を実現してきました。まずはお気軽にご相談ください。
+          </p>
         </div>
 
-        {/* ───────── 悩みカード（PC 2×2グリッド） ───────── */}
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-          {pains.map((pain) => (
-            <div
-              key={pain.line1}
-              className="flex items-center gap-6 rounded-lg border border-navy/10 bg-white p-7"
-              style={{ boxShadow: CARD_SHADOW }}
-            >
-              {/* 悩みアイコン（PNG）：カード横幅の約35%・縦中央・既存レイアウト維持／比率維持 */}
-              <div className="flex aspect-[5/6] w-[35%] shrink-0 items-center justify-center rounded-lg bg-skyblue">
-                <img
-                  src={pain.img}
-                  alt=""
-                  aria-hidden
-                  className="h-[64px] w-auto object-contain md:h-[88px]"
-                />
-              </div>
-
-              <div className="flex flex-1 flex-col">
-                <h3>
-                  <span className="flex items-center gap-2.5">
-                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-cta">
-                      <Check className="h-4 w-4 text-white" strokeWidth={3} />
-                    </span>
-                    <span className="text-[17px] font-extrabold text-navy">{pain.line1}</span>
-                  </span>
-                  <span className="mt-2 block whitespace-nowrap text-[22px] font-black leading-tight text-navy">
-                    {pain.line2.map((seg, i) =>
-                      seg.hi ? (
-                        <span key={i} className="text-[27px] text-cta">
-                          {seg.t}
-                        </span>
-                      ) : (
-                        <span key={i}>{seg.t}</span>
-                      )
-                    )}
-                  </span>
+        {/* 上段：大タイトル3枚 */}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "16px", marginBottom: "16px" }}>
+          {topItems.map((item) => (
+            <div key={item.title} style={{
+              background: "#ffffff",
+              border: "1px solid rgba(232,85,10,0.15)",
+              padding: "32px 24px 28px",
+            }}>
+              {/* アイコン＋タイトル横並び */}
+              <div style={{ display: "flex", alignItems: "center", gap: "14px", marginBottom: "14px" }}>
+                <img src={item.icon} alt={item.title} style={{ width: `${item.iconSize * 1.8}px`, height: `${item.iconSize * 1.8}px`, objectFit: "contain", mixBlendMode: "multiply" as const, flexShrink: 0 }} />
+                <h3 style={{
+                  fontSize: item.titleSize,
+                  fontWeight: 900,
+                  color: ORANGE,
+                  margin: 0,
+                  lineHeight: 1.1,
+                }}>
+                  {item.title}
                 </h3>
+              </div>
+              <p style={{ fontSize: "0.88rem", color: "#555", lineHeight: 1.8, margin: 0 }}>
+                {item.desc}
+              </p>
+            </div>
+          ))}
+        </div>
 
-                <span className="my-4 h-px w-full bg-navy/10" aria-hidden />
-
-                <p className="text-[16px] leading-[1.8] text-ink">{pain.desc}</p>
+        {/* 下段：標準3枚 */}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "16px", marginBottom: "40px" }}>
+          {bottomItems.map((item) => (
+            <div key={item.title} style={{
+              background: "#ffffff",
+              border: "1px solid rgba(232,85,10,0.1)",
+              padding: "24px",
+              display: "flex", gap: "16px", alignItems: "flex-start",
+            }}>
+              <img src={item.icon} alt={item.title} style={{ width: "72px", height: "72px", objectFit: "contain", mixBlendMode: "multiply" as const, flexShrink: 0 }} />
+              <div>
+                <h3 style={{ fontSize: "1.1rem", fontWeight: 900, color: NAVY, margin: "0 0 8px" }}>
+                  {item.title}
+                </h3>
+                <p style={{ fontSize: "0.85rem", color: "#555", lineHeight: 1.8, margin: 0 }}>
+                  {item.desc}
+                </p>
               </div>
             </div>
           ))}
         </div>
 
-        {/* ───────── 下部CTA ───────── */}
-        <div
-          className="mx-auto flex max-w-3xl items-center gap-5 rounded-lg border border-navy/25 bg-white px-8 py-6"
-          style={{ boxShadow: CARD_SHADOW }}
-        >
-          <span className="relative flex h-12 w-12 shrink-0 items-center justify-center">
-            <Shield className="h-12 w-12 text-navy" strokeWidth={1.75} />
-            <Check className="absolute h-[18px] w-[18px] text-cta" strokeWidth={3.5} style={{ marginTop: "-3px" }} />
-          </span>
-          <div className="text-left">
-            <p className="text-[15px] text-ink">ひとつでも当てはまる方は、解散する前に</p>
-            <p className="text-[20px] font-extrabold leading-snug text-navy">
-              <span className="text-cta">「法人売却」という選択肢</span>
-              をご検討ください。
-            </p>
+        {/* CTA帯 */}
+        <div style={{
+          background: "#ffffff",
+          border: "1.5px solid rgba(232,85,10,0.2)",
+          padding: "24px 32px",
+          display: "flex", alignItems: "center", justifyContent: "space-between", gap: "24px",
+        }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
+            <div style={{
+              width: "64px", height: "64px", borderRadius: "50%",
+              background: ORANGE, flexShrink: 0,
+              display: "flex", alignItems: "center", justifyContent: "center",
+            }}>
+              <AlertCircle size={22} color="#ffffff" strokeWidth={2} />
+            </div>
+            <div>
+              <p style={{ fontSize: "1.1rem", fontWeight: 900, color: DARK, margin: "0 0 3px" }}>
+                まずは<span style={{ color: ORANGE }}>無料で相談</span>してみませんか？
+              </p>
+              <p style={{ fontSize: "0.82rem", color: "#777", margin: 0 }}>
+                秘密厳守・相談無料で、あなたの状況に合わせた最適なご提案をいたします。
+              </p>
+            </div>
           </div>
+          <a href="#contact" style={{
+            display: "flex", alignItems: "center", gap: "10px",
+            background: ORANGE, color: "#ffffff",
+            fontSize: "1rem", fontWeight: 800,
+            padding: "14px 28px", textDecoration: "none",
+            whiteSpace: "nowrap", flexShrink: 0,
+          }}>
+            <Mail size={18} strokeWidth={2} />
+            無料で査定してみる
+            <ChevronRight size={18} strokeWidth={2.5} />
+          </a>
         </div>
+
       </div>
     </section>
   )

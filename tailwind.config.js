@@ -3,39 +3,38 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
-      // CLAUDE.md 準拠パレット（紺#1e3a5f / 赤#b03023 / 金#9a7a3a / 背景#ffffff・#fafafa / 金薄#fff8ee / 金枠#d4af37）
+      // オレンジ系パレット（メイン#e8550a / テキスト#1a1a1a / 背景#fff8f5 / アクセントrgba(232,85,10,0.08)）
       colors: {
         navy: {
-          DEFAULT: "#1e3a5f",
-          dark: "#16304d",
-          light: "#2c4a70",
+          DEFAULT: "#e8550a",
+          dark: "#c4440a",
+          light: "#ff6b1a",
         },
         gold: {
-          DEFAULT: "#D4AF37",  // 共通ゴールド（強み・比較・CTA等）
-          hero: "#E5C04A",     // ヒーロー専用ゴールド
-          dark: "#9a7a3a",     // ダーク寄りのゴールド（テキスト用）
+          DEFAULT: "#e8550a",
+          hero: "#ff6b1a",
+          dark: "#c4440a",
         },
-        cream: "#fff8ee",
-        // グレー系テキスト禁止：本文も #1e3a5f に統一
+        cream: "#fff8f5",
         ink: {
-          DEFAULT: "#1e3a5f",
-          light: "#1e3a5f",
-          muted: "#1e3a5f",
+          DEFAULT: "#1a1a1a",
+          light: "#1a1a1a",
+          muted: "#1a1a1a",
         },
         cta: {
-          DEFAULT: "#b03023",
-          hover: "#8f2519",
+          DEFAULT: "#e8550a",
+          hover: "#c4440a",
         },
-        // グレー系背景禁止：オフホワイトへ
         slate: {
-          card: "#1e3a5f",
-          bg: "#fafafa",
+          card: "#e8550a",
+          bg: "#fff8f5",
         },
         teal: {
-          DEFAULT: "#1e3a5f",
+          DEFAULT: "#e8550a",
         },
-        mint: "#fafafa",
-        skyblue: "#fafafa",
+        mint: "#fff8f5",
+        skyblue: "#fff8f5",
+        accent: "rgba(232,85,10,0.08)",
       },
       fontFamily: {
         sans: [

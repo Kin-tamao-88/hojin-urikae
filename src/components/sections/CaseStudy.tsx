@@ -1,167 +1,283 @@
-import imgCaseIt from "../../assets/case/case-person-it.png"
-import imgCaseConstruction from "../../assets/case/case-person-construction.png"
+import { CheckCircle, FileText } from 'lucide-react';
+import personIt from '../../assets/people/person-it.png';
+import personConstruction from '../../assets/people/person-construction.png';
+import personDormant from '../../assets/people/person-dormant.png';
 
-type CaseItem = {
-  no: string
-  industry: string
-  beforeLabel: string
-  beforeValue: string
-  afterLabel: string
-  afterValue: string
-  quote: string
-  personAge: string
-  personRole: string
-  image: string
-}
-
-const cases: CaseItem[] = [
+const cases = [
   {
-    no: "01",
-    industry: "IT企業（システム開発業）",
-    beforeLabel: "他社査定",
-    beforeValue: "買取不可",
-    afterLabel: "弊社成約",
-    afterValue: "200万円",
-    quote:
-      "負債が大きくなり、誰に相談しても法人破産を勧められる状況でした。破産手続きには200万円以上かかると言われ途方に暮れていたところ、法人売却センターに相談。コストはほとんどかからず、むしろ買い取っていただきプラスになりました。対応も非常に早くて助かりました。",
-    personAge: "40代・男性",
-    personRole: "IT企業 経営者",
-    image: imgCaseIt,
+    num: 'CASE 01',
+    category: 'IT企業（システム開発業）',
+    before: { label: '他社査定', value: '買取不可', isText: true },
+    after: { label: '弊社成約額', value: '200万円' },
+    situation: '赤字決算が続き、他社から買取不可と判断された法人。',
+    reason: '独自のネットワークにより、事業価値や資産価値を再評価。',
+    voice: '他社では「価値がない」と言われて諦めていましたが、想定以上の金額で売却できて感謝しています。',
+    img: personIt,
   },
   {
-    no: "02",
-    industry: "建設業（一般建設業）",
-    beforeLabel: "他社提示額",
-    beforeValue: "140万円",
-    afterLabel: "弊社成約",
-    afterValue: "700万円",
-    quote:
-      "受注が決まり準備を進めていた矢先、取引先が突然破産。手元のキャッシュだけでは約500万円の代理弁済が必要で、支払いが間に合わず会社の存続も危ぶまれる状況でした。売却センターに相談したところ『債権があっても価値は高いかもしれない』と言っていただき、700万円で法人売却が成立。本当に助かりました。",
-    personAge: "50代・男性",
-    personRole: "建設業 経営者",
-    image: imgCaseConstruction,
+    num: 'CASE 02',
+    category: '建設業（内装工事業）',
+    before: { label: '他社提示額', value: '140万円', isText: false },
+    after: { label: '弊社成約額', value: '700万円' },
+    situation: '借入が多く、他社提示額はわずか140万円と低く評価されていた。',
+    reason: '取引先との契約関係やブランド価値を評価し、高額売却を実現。',
+    voice: '借金が多く売れると思っていませんでしたが、予想を大きく上回る金額で売却できました。',
+    img: personConstruction,
   },
-]
+  {
+    num: 'CASE 03',
+    category: '休眠法人（不動産管理業）',
+    before: { label: '解散予定', value: '0円', isText: false },
+    after: { label: '弊社成約額', value: '120万円' },
+    situation: '事業を停止し数年間放置していた休眠法人。',
+    reason: '会社としての信用履歴や資産を評価し、再利用価値を見出すことができた。',
+    voice: '解散費用もかかると思っていましたが、思わぬ臨時収入になり、非常に助かりました。',
+    img: personDormant,
+  },
+];
 
 export function CaseStudy() {
   return (
-    <section style={{ background: "#f5f2ec", paddingTop: "48px", paddingBottom: "64px" }}>
-      <div className="container-lp">
+    <section style={{ background: '#ffffff', padding: '80px 0' }}>
+      <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 24px' }}>
 
         {/* セクションヘッダー */}
-        <div style={{ textAlign: "center", marginBottom: "32px" }}>
-          <p style={{ fontSize: "12px", fontWeight: 700, letterSpacing: "0.2em", color: "#D4AF37", marginBottom: "4px" }}>
-            CASE STUDY
-          </p>
-          <h2 style={{ fontSize: "48px", fontWeight: 900, color: "#1e3a5f", letterSpacing: "-0.02em", lineHeight: 1 }}>
-            活用事例
+        <div style={{ textAlign: 'center', marginBottom: 48 }}>
+          <div style={{ display: 'inline-block', marginBottom: 16 }}>
+            <span style={{
+              display: 'inline-block',
+              border: '1.5px solid #e8550a',
+              color: '#e8550a',
+              fontWeight: 700,
+              fontSize: '0.85rem',
+              borderRadius: 999,
+              padding: '4px 20px',
+              letterSpacing: '0.05em',
+            }}>
+              実際の成約事例
+            </span>
+          </div>
+          <h2 style={{
+            fontWeight: 900,
+            fontSize: 'clamp(1.5rem, 4vw, 2.2rem)',
+            color: '#1a1a1a',
+            lineHeight: 1.4,
+            margin: 0,
+          }}>
+            他社で買取不可・低額査定だった法人でも
+            <br />
+            <span style={{ color: '#e8550a' }}>高額売却</span>を実現しています
           </h2>
-          <p style={{ fontSize: "14px", color: "#555", marginTop: "8px" }}>
-            さまざまな状況でも、法人売却という選択肢で問題解決に導いています。
+          <p style={{ color: '#777', fontSize: '0.9rem', marginTop: 12 }}>
+            法人の状況は様々ですが、多数の高額売却実績があります。
           </p>
         </div>
 
-        {/* CASEリスト */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
+        {/* 3カラムCASEカード */}
+        <div
+          style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }}
+          className="case-cards"
+        >
           {cases.map((c) => (
-            <div key={c.no} style={{ overflow: "hidden", border: "1px solid #ddd7ce", borderRadius: "4px", background: "#fff" }}>
-
-              {/* ① CASEヘッダー帯 */}
-              <div style={{ background: "#1a2744", padding: "14px 28px", display: "flex", alignItems: "center", gap: "14px" }}>
-                <span style={{ fontSize: "11px", fontWeight: 900, letterSpacing: "0.15em", color: "rgba(255,255,255,0.5)", whiteSpace: "nowrap" }}>
-                  CASE {c.no}
+            <div
+              key={c.num}
+              style={{
+                background: '#fff8f5',
+                border: '1px solid #f0e8e0',
+                borderRadius: 16,
+                padding: '24px 20px 28px',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 16,
+              }}
+            >
+              {/* カードヘッダー */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                <span style={{
+                  background: '#e8550a',
+                  color: '#fff',
+                  fontWeight: 900,
+                  fontSize: '0.75rem',
+                  borderRadius: 6,
+                  padding: '4px 10px',
+                  letterSpacing: '0.05em',
+                  whiteSpace: 'nowrap',
+                }}>
+                  {c.num}
                 </span>
-                <span style={{ display: "inline-block", width: "1px", height: "16px", background: "rgba(255,255,255,0.25)", flexShrink: 0 }} />
-                <h3 style={{ fontSize: "18px", fontWeight: 900, color: "#ffffff", margin: 0 }}>
-                  {c.industry}
-                </h3>
+                <span style={{ fontWeight: 700, fontSize: '0.9rem', color: '#1a1a1a' }}>
+                  {c.category}
+                </span>
               </div>
 
-              {/* ② 数字エリア */}
-              <div style={{ background: "#ffffff", padding: "10px 24px", borderBottom: "1px solid #e8e3dc" }}>
-                <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "24px" }}>
-                  <div style={{ textAlign: "center" }}>
-                    <span style={{ display: "inline-block", background: "#888", color: "#ffffff", fontSize: "13px", fontWeight: 700, padding: "4px 16px", borderRadius: "2px", letterSpacing: "0.05em", marginBottom: "6px" }}>
-                      {c.beforeLabel}
-                    </span>
-                    <p style={{ fontSize: "40px", fontWeight: 700, color: "#999", letterSpacing: "-0.02em", lineHeight: 1, margin: 0, whiteSpace: "nowrap", textDecoration: "line-through", textDecorationColor: "#b03023", textDecorationThickness: "3px" }}>
-                      {c.beforeValue}
-                    </p>
+              {/* Before → After */}
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 8,
+                background: '#fff',
+                borderRadius: 10,
+                padding: '14px 16px',
+              }}>
+                {/* Before */}
+                <div style={{ flex: 1, textAlign: 'center' }}>
+                  <p style={{ fontSize: '0.72rem', color: '#999', marginBottom: 4, fontWeight: 500 }}>
+                    {c.before.label}
+                  </p>
+                  <p style={{
+                    fontWeight: 900,
+                    fontSize: c.before.isText ? '1.3rem' : '1.5rem',
+                    color: '#aaa',
+                    lineHeight: 1,
+                  }}>
+                    {c.before.value}
+                  </p>
+                </div>
+                {/* 矢印 */}
+                <span style={{ color: '#e8550a', fontSize: '1.4rem', fontWeight: 900, lineHeight: 1 }}>→</span>
+                {/* After */}
+                <div style={{ flex: 1, textAlign: 'center' }}>
+                  <p style={{ fontSize: '0.72rem', color: '#e8550a', marginBottom: 4, fontWeight: 600 }}>
+                    {c.after.label}
+                  </p>
+                  <p style={{
+                    fontWeight: 900,
+                    fontSize: '1.6rem',
+                    color: '#e8550a',
+                    lineHeight: 1,
+                  }}>
+                    {c.after.value}
+                  </p>
+                </div>
+              </div>
+
+              {/* 法人の状況・売却できた理由 */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+                <div style={{ display: 'flex', gap: 8, alignItems: 'flex-start' }}>
+                  <CheckCircle size={16} color="#e8550a" strokeWidth={2} style={{ marginTop: 2, flexShrink: 0 }} />
+                  <div>
+                    <span style={{ fontWeight: 700, fontSize: '0.8rem', color: '#e8550a' }}>法人の状況　</span>
+                    <span style={{ fontSize: '0.82rem', color: '#444', lineHeight: 1.6 }}>{c.situation}</span>
                   </div>
-                  <div style={{ flexShrink: 0 }}>
-                    <svg width="80" height="56" viewBox="0 0 80 56" xmlns="http://www.w3.org/2000/svg">
-                      <polygon points="0,20 50,20 50,4 80,28 50,52 50,36 0,36" fill="#b03023"/>
-                    </svg>
-                  </div>
-                  <div style={{ textAlign: "center", position: "relative" }}>
-                    <div style={{ marginBottom: "6px" }}>
-                      <span style={{ display: "inline-block", background: "#9a7a3a", color: "#ffffff", fontSize: "13px", fontWeight: 700, padding: "4px 16px", borderRadius: "2px", letterSpacing: "0.05em" }}>
-                        {c.afterLabel}
-                      </span>
-                    </div>
-                    <div style={{ position: "relative", display: "inline-block" }}>
-                      <p style={{ fontSize: "72px", fontWeight: 900, color: "#b03023", letterSpacing: "-0.03em", lineHeight: 1, margin: 0, whiteSpace: "nowrap", borderBottom: "4px solid #D4AF37", paddingBottom: "4px" }}>
-                        {c.afterValue}
-                      </p>
-                      {/* キラキラ装飾 */}
-                      <span style={{ position: "absolute", top: "-8px", right: "-18px", fontSize: "20px", color: "#D4AF37", fontWeight: 900, lineHeight: 1 }}>✦</span>
-                      <span style={{ position: "absolute", top: "8px", right: "-30px", fontSize: "12px", color: "#D4AF37", fontWeight: 900, lineHeight: 1 }}>✦</span>
-                      <span style={{ position: "absolute", top: "-4px", right: "-42px", fontSize: "16px", color: "#D4AF37", opacity: 0.6, lineHeight: 1 }}>✦</span>
-                    </div>
+                </div>
+                <div style={{ display: 'flex', gap: 8, alignItems: 'flex-start' }}>
+                  <CheckCircle size={16} color="#e8550a" strokeWidth={2} style={{ marginTop: 2, flexShrink: 0 }} />
+                  <div>
+                    <span style={{ fontWeight: 700, fontSize: '0.8rem', color: '#e8550a' }}>売却できた理由　</span>
+                    <span style={{ fontSize: '0.82rem', color: '#444', lineHeight: 1.6 }}>{c.reason}</span>
                   </div>
                 </div>
               </div>
 
-              {/* ③ 口コミエリア */}
-              <div style={{ background: "#faf8f3", padding: "8px 24px 12px" }}>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 140px", gap: "16px", alignItems: "center" }}>
-
-                  {/* 吹き出しコメント */}
-                  <div style={{ position: "relative", background: "#ffffff", border: "1px solid #e2e8f0", borderRadius: "8px", padding: "14px 18px" }}>
-                    <p style={{ fontSize: "15px", fontWeight: 400, lineHeight: 1.9, color: "#374151", margin: 0 }}>
-                      {c.quote}
-                    </p>
-                    {/* 吹き出しの三角（右向き） */}
-                    <div style={{
-                      position: "absolute",
-                      right: "-12px",
-                      top: "50%",
-                      transform: "translateY(-50%)",
-                      width: 0,
-                      height: 0,
-                      borderTop: "10px solid transparent",
-                      borderBottom: "10px solid transparent",
-                      borderLeft: "12px solid #ffffff",
-                      filter: "drop-shadow(1px 0 0 #e2e8f0)"
-                    }} />
-                  </div>
-
-                  {/* 人物写真＋属性 */}
-                  <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "8px" }}>
-                    <img
-                      src={c.image}
-                      alt={`${c.personAge} ${c.personRole}`}
-                      style={{ width: "130px", height: "130px", borderRadius: "50%", objectFit: "cover", objectPosition: "center 10%", border: "2px solid #D4AF37" }}
-                    />
-                    <div style={{ textAlign: "center", lineHeight: 1.6 }}>
-                      <p style={{ fontSize: "13px", fontWeight: 700, color: "#1e3a5f", margin: 0 }}>{c.personAge}</p>
-                      <p style={{ fontSize: "12px", fontWeight: 400, color: "rgba(30,58,95,0.65)", margin: 0 }}>{c.personRole}</p>
-                    </div>
-                  </div>
-
+              {/* オーナーの声 */}
+              <div>
+                <p style={{ fontWeight: 700, fontSize: '0.8rem', color: '#e8550a', marginBottom: 8 }}>
+                  オーナー様の声
+                </p>
+                <div style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
+                  <img
+                    src={c.img}
+                    alt="オーナー様"
+                    style={{
+                      width: 52,
+                      height: 52,
+                      borderRadius: '50%',
+                      objectFit: 'cover',
+                      objectPosition: 'center top',
+                      flexShrink: 0,
+                      border: '2px solid #f0e8e0',
+                    }}
+                  />
+                  <p style={{ fontSize: '0.82rem', color: '#444', lineHeight: 1.7, margin: 0 }}>
+                    {c.voice}
+                  </p>
                 </div>
               </div>
-
             </div>
           ))}
         </div>
 
-        {/* 注釈 */}
-        <p style={{ marginTop: "20px", textAlign: "center", fontSize: "11px", color: "rgba(30,58,95,0.4)" }}>
-          ※上記は一例であり、すべてのケースで同様の結果を保証するものではありません。
+        {/* 免責注記 */}
+        <p style={{ textAlign: 'center', fontSize: '0.78rem', color: '#aaa', marginTop: 20 }}>
+          ※上記は一例であり、すべての法人が同様の金額で売却できることを保証するものではありません。
         </p>
 
+        {/* 下部ミニCTAバナー */}
+        <div style={{
+          marginTop: 40,
+          background: '#fff8f5',
+          border: '1px solid #f0e8e0',
+          borderRadius: 16,
+          padding: '28px 32px',
+          display: 'flex',
+          alignItems: 'center',
+          gap: 32,
+          flexWrap: 'wrap',
+        }}
+          className="case-cta-banner"
+        >
+          {/* 左：画像＋テキスト */}
+          <div style={{ flex: 1, minWidth: 240, display: 'flex', alignItems: 'center', gap: 20 }}>
+            <img
+              src={personIt}
+              alt=""
+              style={{ width: 72, height: 72, borderRadius: 8, objectFit: 'cover', flexShrink: 0 }}
+            />
+            <div>
+              <p style={{ fontWeight: 900, fontSize: '1rem', color: '#1a1a1a', marginBottom: 8 }}>
+                あなたの法人にも、<span style={{ color: '#e8550a' }}>思わぬ価値が残っている</span>かもしれません。
+              </p>
+              <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap' }}>
+                {['最短○日で査定完了', '情報は完全に秘密厳守', '相談・査定はすべて無料'].map((item) => (
+                  <span key={item} style={{ fontSize: '0.8rem', color: '#666', display: 'flex', alignItems: 'center', gap: 4 }}>
+                    <span style={{ color: '#e8550a', fontWeight: 700 }}>✓</span> {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* 右：CTAボタン */}
+          <a
+            href="#contact"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: 8,
+              background: '#e8550a',
+              color: '#fff',
+              fontWeight: 900,
+              fontSize: '1rem',
+              borderRadius: 8,
+              padding: '16px 28px',
+              textDecoration: 'none',
+              whiteSpace: 'nowrap',
+              transition: 'background 0.18s',
+              flexShrink: 0,
+            }}
+            onMouseOver={(e) => ((e.currentTarget as HTMLAnchorElement).style.background = '#c94208')}
+            onMouseOut={(e) => ((e.currentTarget as HTMLAnchorElement).style.background = '#e8550a')}
+          >
+            <FileText size={18} strokeWidth={2} />
+            今すぐ無料で査定してみる
+            <span style={{ fontSize: '1.2em' }}>›</span>
+          </a>
+        </div>
       </div>
+
+      {/* レスポンシブ */}
+      <style>{`
+        @media (max-width: 900px) {
+          .case-cards {
+            grid-template-columns: 1fr !important;
+          }
+          .case-cta-banner {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+          }
+        }
+      `}</style>
     </section>
-  )
+  );
 }
