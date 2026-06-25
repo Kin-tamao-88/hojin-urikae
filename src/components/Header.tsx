@@ -3,7 +3,7 @@ import { Building2, Phone } from "lucide-react"
 export function Header() {
   return (
     <header className="border-b border-navy/10 bg-white">
-      <div className="mx-auto flex h-28 max-w-[1600px] items-center justify-between gap-6 px-6 lg:px-10">
+      <div className="mx-auto flex py-2 max-w-[1600px] items-center justify-between gap-6 px-6 lg:px-10">
         {/* ロゴ */}
         <a href="#hero" className="flex items-center gap-3.5">
           <span className="flex h-14 w-14 items-center justify-center rounded-md bg-navy text-gold">

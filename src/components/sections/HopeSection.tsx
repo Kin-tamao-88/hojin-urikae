@@ -1,5 +1,6 @@
 import { ChevronRight } from 'lucide-react'
 import reportSample from '../../assets/hero/report-sample.png'
+import jcaoLogo from '../../assets/hero/jcao-logo-top.png'
 
 const NAVY = '#1a2744'
 const ORANGE = '#e8550a'
@@ -9,87 +10,74 @@ export const HopeSection = () => {
   return (
     <section style={{ backgroundColor: BG }}>
 
-      {/* ===== 上段：左テキスト / 右画像 ===== */}
       <div style={{
         maxWidth: '1100px',
         margin: '0 auto',
-        padding: '80px 40px 64px',
-        display: 'grid',
-        gridTemplateColumns: '1fr 1fr',
-        gap: '60px',
-        alignItems: 'center',
+        padding: '48px 40px 64px',
       }}>
 
-        {/* 左：説明文 */}
+        {/* 1段目：ロゴ中央 */}
         <div>
-          {/* ラベル */}
-          <p style={{
-            color: ORANGE,
-            fontSize: '2.8rem',
-            fontWeight: 700,
-            letterSpacing: '0.05em',
-            margin: '0 0 10px 0',
-          }}>
-            法人サルベージとは？
-          </p>
-          <div style={{
-            width: '28px',
-            height: '2px',
-            backgroundColor: ORANGE,
-            margin: '0 0 28px 0',
-          }} />
+          <img
+            src={jcaoLogo}
+            alt="JCAO"
+            style={{ height: '120px', display: 'block', margin: '0 auto 40px auto' }}
+          />
+        </div>
 
-          {/* 見出し */}
-          <h2 style={{
-            color: NAVY,
-            fontSize: '2.2rem',
-            fontWeight: 800,
-            lineHeight: 1.5,
-            margin: '0 0 32px 0',
-          }}>
-            あなたの法人、<br />
-            {/* 「いくらの価値が付くか」にオレンジ下からハイライト40% */}
-            <span style={{
-              background: `linear-gradient(to top, rgba(232,85,10,0.25) 40%, transparent 40%)`,
-            }}>
-              いくらの価値が付くか
-            </span><br />
-            試してみませんか？
-          </h2>
+        {/* 2段目：見出し */}
+        <h2 style={{
+          color: NAVY,
+          fontSize: '2.73rem',
+          fontWeight: 800,
+          lineHeight: 1.5,
+          margin: 0,
+        }}>
+          JCAOとは？
+        </h2>
+        <div style={{
+          height: '3px',
+          background: ORANGE,
+          width: '280px',
+          marginTop: '8px',
+          marginBottom: '40px',
+        }} />
 
-          {/* 区切り線 */}
-          <div style={{
-            borderTop: '1px solid #e0e0e0',
-            paddingTop: '28px',
-          }}>
-            <p style={{
-              color: '#222',
-              fontSize: '1.1rem',
-              lineHeight: 1.9,
-              margin: '0 0 16px 0',
-            }}>
-              休眠法人や赤字法人だからといって、<br />
-              必ずしも価値がないとは限りません。
+        {/* 3段目：上2段落・全幅 */}
+        <p style={{ color: '#222', fontSize: '1.1rem', lineHeight: 2.0, margin: '0 0 20px 0', maxWidth: '720px' }}>
+          「会社を持つって、こんなにお金がかかるものだったのか。」
+        </p>
+     <p style={{ color: '#e8550a', fontSize: '1.2rem', lineHeight: 2.0, margin: '0 0 16px 0', fontWeight: 700  }}>
+          設立にも、維持にも、そして解散にも——<br />
+
+          法人というのは、持っているだけでコストが生まれ続けます。
+        </p>
+
+        {/* 4段目：下2段落＋画像 横並び */}
+        <div style={{ display: 'flex', alignItems: 'flex-end', gap: '64px' }}>
+          <div style={{ maxWidth: '620px', flex: '0 0 620px' }}>
+            <p style={{ color: '#222', fontSize: '1.1rem', lineHeight: 2.0, margin: '0 0 20px 0' }}>
+              「使わなくなった会社を、ただ眠らせておくしかない」<br />
+              そう諦めている経営者の方が、日本にはたくさんいます。
             </p>
-            <p style={{
-              color: '#222',
-              fontSize: '1.1rem',
-              lineHeight: 1.9,
-              margin: 0,
-            }}>
-              法人の信用履歴、取引実績、許認可、設立年数などが評価され、思わぬ価値が付くケースもあります。
-            </p>
+            <p style={{ color: '#222', fontSize: '1.1rem', lineHeight: 2.0, margin: '0 0 8px 0', fontWeight: 700 }}>
+  JCAOは、そんな現実に違和感を解消するためのサービスです。
+</p>
+<p style={{ color: '#222', fontSize: '1.1rem', lineHeight: 2.7, margin: 0 }}>
+  あなたの法人に残っている価値を、必要としている人へ繋ぐ。<br />
+  無駄なコストが掛からない、最適な提案で価値を生みだし<br />
+  次のビジネスへの架け橋になることが私たちの使命です。
+</p>
+          </div>
+          <div style={{ flexShrink: 0, marginLeft: '-60px' }}>
+            <img
+              src={reportSample}
+              alt=""
+              style={{ width: '400px', height: 'auto', opacity: 0.85 }}
+            />
           </div>
         </div>
 
-        {/* 右：レポート画像 */}
-        <div>
-          <img
-            src={reportSample}
-            alt="法人価値診断レポートのサンプル"
-            style={{ width: '100%', display: 'block' }}
-          />
-        </div>
       </div>
 
       {/* ===== CTA ===== */}
@@ -105,7 +93,6 @@ export const HopeSection = () => {
               overflow: 'hidden',
             }}
           >
-            {/* 上段 */}
             <div style={{
               backgroundColor: ORANGE,
               color: '#ffffff',
@@ -117,7 +104,6 @@ export const HopeSection = () => {
             }}>
               今、法人の価値を知ることにはメリットがあります
             </div>
-            {/* 下段 */}
             <div style={{
               backgroundColor: NAVY,
               color: '#ffffff',
