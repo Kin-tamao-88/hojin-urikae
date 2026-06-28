@@ -207,20 +207,21 @@ export default function Hero() {
                   WebkitMaskImage: "linear-gradient(to right, black 0%, black 8%, transparent 18%)",
                 }}
               />
+            </div>
 
-              {/* 査定最高額：右カラム内絶対配置（PC専用） */}
-              <div
-                className="pointer-events-none absolute left-[4%] top-[40px] z-30 flex flex-col items-start"
-                style={{ transform: "rotate(-6deg)", transformOrigin: "left center" }}
-                aria-hidden
-              >
-              <span className="whitespace-nowrap leading-none" style={{ fontSize: "37px", fontWeight: 800, color: RED }}>
+            {/* 査定最高額：絶対配置（PC専用） */}
+            <div
+              className="pointer-events-none absolute left-[41%] top-[55px] z-30 hidden md:flex flex-col items-start"
+              style={{ transform: "rotate(-6deg)", transformOrigin: "left center" }}
+              aria-hidden
+            >
+              <span className="whitespace-nowrap leading-none" style={{ fontSize: "20px", fontWeight: 800, color: RED }}>
                 査定最高額
               </span>
-              <div className="relative mt-[12px]">
+              <div className="relative mt-[8px]">
                 <svg
-                  className="absolute -left-[10px] -bottom-[12px] -z-10 h-[48px] w-[420px]"
-                  viewBox="0 0 420 50"
+                  className="absolute -left-[8px] -bottom-[10px] -z-10 h-[36px] w-[300px]"
+                  viewBox="0 0 300 50"
                   fill="none"
                   preserveAspectRatio="none"
                 >
@@ -230,25 +231,22 @@ export default function Hero() {
                       <stop offset="100%" stopColor="#E5C04A" />
                     </linearGradient>
                   </defs>
-                  <path d="M4 44 C 60 36, 130 30, 220 20 C 300 12, 360 10, 415 4 C 390 18, 330 22, 248 30 C 158 38, 72 42, 10 50 Z" fill="url(#heroBrush)" opacity="0.95" />
-                  <path d="M6 42 C 80 34, 180 26, 310 16 C 360 12, 395 8, 414 5 C 400 14, 365 18, 318 22 C 200 30, 90 38, 12 47 Z" fill="#E5C04A" opacity="0.35" />
-                  <path d="M30 37 C 140 30, 260 23, 380 12" stroke="#ffffff" strokeOpacity="0.4" strokeWidth="1.6" strokeLinecap="round" />
-                  <path d="M22 42 C 150 34, 270 28, 392 16" stroke="#846526" strokeOpacity="0.5" strokeWidth="1.3" strokeLinecap="round" />
-                  <path d="M318 19 l 16 -2 M348 16 l 20 -3 M384 11 l 18 -3" stroke="#E5C04A" strokeWidth="3" strokeLinecap="round" opacity="0.85" />
+                  <path d="M4 44 C 60 36, 130 30, 220 20 C 260 12, 280 10, 295 4 C 280 18, 240 22, 178 30 C 118 38, 52 42, 10 50 Z" fill="url(#heroBrush)" opacity="0.95" />
+                  <path d="M6 42 C 80 34, 160 26, 270 16 C 283 12, 293 8, 295 5 C 286 14, 266 18, 238 22 C 150 30, 70 38, 12 47 Z" fill="#E5C04A" opacity="0.35" />
+                  <path d="M20 37 C 100 30, 190 23, 280 12" stroke="#ffffff" strokeOpacity="0.4" strokeWidth="1.4" strokeLinecap="round" />
                 </svg>
                 <span className="relative whitespace-nowrap leading-none" style={{ color: RED }}>
-                  <span style={{ fontSize: "84px", fontWeight: 900 }}>1,100</span>
-                  <span style={{ fontSize: "52px", fontWeight: 700, marginLeft: "2px" }}>万円</span>
-                  <span style={{ fontSize: "52px", fontWeight: 700, marginLeft: "4px" }}>！</span>
+                  <span style={{ fontSize: "52px", fontWeight: 900 }}>1,100</span>
+                  <span style={{ fontSize: "34px", fontWeight: 700, marginLeft: "2px" }}>万円</span>
+                  <span style={{ fontSize: "34px", fontWeight: 700, marginLeft: "2px" }}>！</span>
                 </span>
               </div>
-              <span className="mt-[16px] whitespace-nowrap leading-none" style={{ fontSize: "24px", fontWeight: 700, color: NAVY }}>
+              <span className="mt-[10px] whitespace-nowrap leading-none" style={{ fontSize: "14px", fontWeight: 700, color: NAVY }}>
                 当日払いの実績アリ
               </span>
-              <span className="mt-[8px] self-center whitespace-nowrap" style={{ fontSize: "13px", fontWeight: 600, color: NAVY }}>
+              <span className="mt-[4px] self-center whitespace-nowrap" style={{ fontSize: "11px", fontWeight: 400, color: NAVY }}>
                 （負債有り法人の実績）
               </span>
-              </div>
             </div>
 
           </div>
