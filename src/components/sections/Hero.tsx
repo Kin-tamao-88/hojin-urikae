@@ -34,15 +34,15 @@ const PAGE_BG = "#fafafa"
 const cards = [
   { icon: iconRedCompany, label: "赤字法人", ok: true },
   { icon: iconDebt, label: "債務あり", ok: true },
-  { icon: iconNationwide, label: "全国対応\n47都道府県", ok: false },
+  { icon: iconNationwide, label: "全国対応\nオンラインで完結", ok: false },
   { icon: iconProfessionalSupport, label: "士業連携で\n安心サポート", ok: false },
 ]
 
 const stats: { value: string; label: string; note: string; vSize?: number }[] = [
   { value: "300件以上", label: "法人売却相談", note: "※2025年度実績" },
-  { value: "47都道府県", label: "全国対応", note: "", vSize: 32 },
-  { value: "100%", label: "秘密厳守", note: "プライバシー徹底保護" },
-  { value: "即日対応", label: "最短査定", note: "スピード査定", vSize: 36 },
+  { value: "85万円以上", label: "平均買取実績", note: "赤字・負債ありでも", vSize: 32 },
+  { value: "最低10万円以上", label: "買取保証アリ", note: "過去買取実績", vSize: 28 },
+  { value: "即日対応", label: "最短査定", note: "当日現金化OK", vSize: 36 },
 ]
 
 export default function Hero() {
