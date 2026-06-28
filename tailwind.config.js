@@ -3,38 +3,39 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
-      // オレンジ系パレット（メイン#e8550a / テキスト#1a1a1a / 背景#fff8f5 / アクセントrgba(232,85,10,0.08)）
+      // CLAUDE.md 準拠パレット（紺#1e3a5f / 赤#b03023 / 金#9a7a3a / 背景#ffffff・#fafafa / 金薄#fff8ee / 金枠#d4af37）
       colors: {
         navy: {
-          DEFAULT: "#e8550a",
-          dark: "#c4440a",
-          light: "#ff6b1a",
+          DEFAULT: "#1e3a5f",
+          dark: "#16304d",
+          light: "#2c4a70",
         },
         gold: {
-          DEFAULT: "#e8550a",
-          hero: "#ff6b1a",
-          dark: "#c4440a",
+          DEFAULT: "#9a7a3a",
+          light: "#d4af37", // ゴールドボーダー用
+          dark: "#846526",
         },
-        cream: "#fff8f5",
+        cream: "#fff8ee",
+        // グレー系テキスト禁止：本文も #1e3a5f に統一
         ink: {
-          DEFAULT: "#1a1a1a",
-          light: "#1a1a1a",
-          muted: "#1a1a1a",
+          DEFAULT: "#1e3a5f",
+          light: "#1e3a5f",
+          muted: "#1e3a5f",
         },
         cta: {
-          DEFAULT: "#e8550a",
-          hover: "#c4440a",
+          DEFAULT: "#b03023",
+          hover: "#8f2519",
         },
+        // グレー系背景禁止：オフホワイトへ
         slate: {
-          card: "#e8550a",
-          bg: "#fff8f5",
+          card: "#1e3a5f",
+          bg: "#fafafa",
         },
         teal: {
-          DEFAULT: "#e8550a",
+          DEFAULT: "#1e3a5f",
         },
-        mint: "#fff8f5",
-        skyblue: "#fff8f5",
-        accent: "rgba(232,85,10,0.08)",
+        mint: "#fafafa",
+        skyblue: "#fafafa",
       },
       fontFamily: {
         sans: [

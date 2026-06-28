@@ -1,232 +1,236 @@
-import { Building2, Timer, Lock, FileText, CheckCircle } from 'lucide-react';
-import syoudanImg from '../../assets/people/syoudan-lp2.png';
+import imgNetwork from "../../assets/strength/strength-network.png"
+import imgSpeed from "../../assets/strength/strength-speed.png"
+import imgPotential from "../../assets/strength/strength-potential.png"
 
-const reasons = [
-  {
-    num: '01',
-    icon: <Building2 size={32} color="#e8550a" strokeWidth={1.5} />,
-    title: '業界最高水準の買取価格',
-    desc: '多数の買い手ネットワークと独自のノウハウにより、業界最高水準の買取価格をご提示します。',
-  },
-  {
-    num: '02',
-    icon: <Timer size={32} color="#e8550a" strokeWidth={1.5} />,
-    title: '最短○日で現金化が可能',
-    desc: '迅速な査定とスピーディーな手続きで、最短○日での現金化を実現します。',
-  },
-  {
-    num: '03',
-    icon: <Lock size={32} color="#e8550a" strokeWidth={1.5} />,
-    title: '秘密厳守で安心の取引',
-    desc: '企業情報や取引内容は厳重に管理し、秘密厳守で安心してご相談いただけます。',
-  },
-];
+type StrengthItem = {
+  no: string
+  subLabel: string
+  num: string
+  numSuffix?: string
+  numColor?: string
+  heading: string
+  body: string
+  footnote?: string
+  image: string
+  reverse: boolean
+  bg: string
+}
 
-const checks = [
-  '全国対応 47都道府県',
-  '初回相談 完全無料',
-  'オンライン相談 対応可能',
-];
+const items: StrengthItem[] = [
+  {
+    no: "01",
+    subLabel: "対応実績",
+    num: "1,000",
+    numSuffix: "件以上",
+    heading: "独自のネットワーク",
+    body: "赤字法人や休眠法人でも、価値が残っているケースがあります。弊社では独自のネットワークを活用し、法人を必要としている買い手様とのマッチングを行っています。需要を見出す提案力が、高値での譲渡につながる理由のひとつです。",
+    image: imgNetwork,
+    reverse: false,
+    bg: "#faf9f6",
+  },
+  {
+    no: "02",
+    subLabel: "最短査定",
+    num: "即日",
+    heading: "圧倒的なスピード対応",
+    body: "法人売却はタイミングも重要です。全国オンライン対応により、ご相談から査定までスピーディーに対応。最短即日で方向性をご提案いたします。",
+    image: imgSpeed,
+    reverse: true,
+    bg: "#f0ece3",
+  },
+  {
+    no: "03",
+    subLabel: "他社断られ案件の成約率",
+    num: "89",
+    numSuffix: "%",
+    heading: "他社で断られた法人も対応",
+    body: "赤字・債務超過・長期休眠・売上ゼロ。「こんな状態では無理」と思っている法人ほど、意外な価値が残っているケースがあります。他社で断られた案件の89%が、弊社のネットワークで成約に至っています。",
+    footnote: "※2024年1月〜2026年5月の当社実績に基づく（他社で一度断られた案件を対象）",
+    image: imgPotential,
+    reverse: true,
+    bg: "#faf9f6",
+  },
+]
 
 export function Strength() {
   return (
-    <section style={{ background: '#fff8f5' }}>
-      {/* 上ブロック：3つの理由 */}
-      <div style={{ maxWidth: 1100, margin: '0 auto', padding: '72px 24px 56px' }}>
-        <h2
-          style={{
-            color: '#1a1a1a',
-            fontWeight: 900,
-            fontSize: 'clamp(1.5rem, 4vw, 2.25rem)',
-            textAlign: 'center',
-            marginBottom: 48,
-            letterSpacing: '-0.01em',
-          }}
-        >
-          ＼ 法人売却センターが選ばれる{' '}
-          <span style={{ color: '#e8550a' }}>3つの理由</span> ／
-        </h2>
-
-        {/* 3カラムカード */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: 24,
-          }}
-          className="strength-cards"
-        >
-          {reasons.map((r) => (
-            <div
-              key={r.num}
-              style={{
-                background: '#ffffff',
-                border: '1px solid #e8e0d8',
-                borderRadius: 12,
-                padding: '28px 24px 32px',
-                position: 'relative',
-              }}
-            >
-              <span
-                style={{
-                  position: 'absolute',
-                  top: 20,
-                  left: 20,
-                  background: '#e8550a',
-                  color: '#ffffff',
-                  fontWeight: 900,
-                  fontSize: '0.75rem',
-                  borderRadius: '50%',
-                  width: 36,
-                  height: 36,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  letterSpacing: '0.02em',
-                }}
-              >
-                {r.num}
-              </span>
-              <div style={{ marginTop: 36, marginBottom: 16 }}>{r.icon}</div>
-              <p
-                style={{
-                  fontWeight: 800,
-                  fontSize: '1.1rem',
-                  color: '#1a1a1a',
-                  marginBottom: 10,
-                }}
-              >
-                {r.title}
-              </p>
-              <p style={{ fontWeight: 400, fontSize: '0.9rem', color: '#444', lineHeight: 1.7 }}>
-                {r.desc}
-              </p>
-            </div>
-          ))}
+    <section>
+      {/* セクションヘッダー */}
+      <div className="bg-[#faf9f6] pt-12 pb-4">
+        <div className="container-lp flex flex-col items-center text-center">
+          <span className="mb-3 inline-flex items-center gap-2 text-sm font-extrabold tracking-wider text-gold">
+            <span className="h-px w-6 bg-gold" aria-hidden />
+            なぜ高値で・赤字でも・スピーディーに買い取れるのか
+            <span className="h-px w-6 bg-gold" aria-hidden />
+          </span>
+          <h2 className="text-4xl font-black leading-tight tracking-tight text-[#1e3a5f] md:text-5xl">
+            確固たる3つの強み
+          </h2>
         </div>
-
-        {/* フルワイドCTAボタン */}
-        <a
-          href="#contact"
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: 10,
-            marginTop: 36,
-            background: '#e8550a',
-            color: '#ffffff',
-            fontWeight: 900,
-            fontSize: 'clamp(1rem, 2.5vw, 1.2rem)',
-            borderRadius: 8,
-            padding: '20px 32px',
-            textDecoration: 'none',
-            transition: 'background 0.18s',
-            width: '100%',
-          }}
-          onMouseOver={(e) => ((e.currentTarget as HTMLAnchorElement).style.background = '#c94208')}
-          onMouseOut={(e) => ((e.currentTarget as HTMLAnchorElement).style.background = '#e8550a')}
-        >
-          <FileText size={22} strokeWidth={2} />
-          今すぐ無料で査定する
-          <span style={{ fontSize: '1.3em', lineHeight: 1 }}>›</span>
-        </a>
       </div>
 
-      {/* 下ブロック：専門チームセクション */}
-      <div
-        style={{ maxWidth: 1100, margin: '0 auto', padding: '0 24px 80px' }}
-        className="strength-team"
-      >
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '55% 45%',
-            gap: 48,
-            alignItems: 'center',
-          }}
-          className="strength-team-inner"
-        >
-          {/* 左エリア */}
-          <div>
-            <h3
-              style={{
-                fontWeight: 900,
-                fontSize: 'clamp(1.4rem, 3vw, 2.1rem)',  /* ← 少し下げて最終行を1行に収める */
-                color: '#1a1a1a',
-                lineHeight: 1.5,
-                marginBottom: 20,
-              }}
-            >
-              法人売却・事業承継の
-              <br />
-              <span style={{ color: '#e8550a' }}>専門チーム</span>が
-              あなたの会社の<span style={{ color: '#e8550a' }}>未来</span>をサポートします
-            </h3>
-            <p
-              style={{
-                fontWeight: 400,
-                fontSize: '0.95rem',
-                color: '#555',
-                lineHeight: 1.8,
-                marginBottom: 28,
-              }}
-            >
-              豊富な経験と専門知識を持つコンサルタントが、
-              <br />
-              お客様一人ひとりに最適な解決策をご提案いたします。
-              <br />
-              まずはお気軽にご相談ください。
-            </p>
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 12 }}>
-              {checks.map((item) => (
-                <li key={item} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                  <CheckCircle size={20} color="#e8550a" strokeWidth={2} />
-                  <span style={{ fontWeight: 400, fontSize: '0.95rem', color: '#1a1a1a' }}>
-                    {item}
+      {items.map((item) => (
+        <div key={item.no} style={{ backgroundColor: item.bg }}>
+          {/* PC: 左右2カラム / SP: flex縦積み＋order制御 */}
+          <div
+            className="strength-item-grid mx-auto grid grid-cols-1 items-center"
+            style={{
+              maxWidth: "1200px",
+              padding: "24px 32px",
+              gridTemplateColumns: item.reverse ? "40% 60%" : "60% 40%",
+            }}
+          >
+            {/* テキストブロック（SP: display:contentsで子要素をflexの直接子に） */}
+            <div className={`strength-text-wrap flex flex-col px-6 py-4 ${item.reverse ? "md:order-2" : "md:order-1"}`}>
+
+              {/* ① 数字＋見出し（SP: order 1） */}
+              <div className="strength-num-head">
+                <div className="mb-2 flex items-baseline gap-1">
+                  <span
+                    style={{
+                      fontSize: "72px",
+                      fontWeight: 900,
+                      lineHeight: 1,
+                      letterSpacing: "-0.03em",
+                      color: item.numColor ?? "#b03023",
+                    }}
+                  >
+                    {item.num}
                   </span>
-                </li>
-              ))}
-            </ul>
-          </div>
+                  {item.numSuffix && (
+                    <span
+                      style={{
+                        fontSize: "28px",
+                        fontWeight: 900,
+                        color: item.numColor ?? "#b03023",
+                      }}
+                    >
+                      {item.numSuffix}
+                    </span>
+                  )}
+                </div>
+                <div className="mb-[10px] flex items-center gap-3">
+                  <span
+                    className="text-4xl font-bold leading-none"
+                    style={{ color: "#D4AF37" }}
+                  >
+                    {item.no}
+                  </span>
+                  <h3 className="text-3xl font-bold leading-snug text-[#1e3a5f]">
+                    {item.heading}
+                  </h3>
+                </div>
+              </div>
 
-          {/* 右エリア：画像 */}
-          <div style={{ height: '100%', minHeight: 360 }}>  {/* ← 高さを確保 */}
-            <img
-              src={syoudanImg}
-              alt="専門チームによる商談シーン"
-              style={{
-                width: '100%',
-                height: '100%',
-                minHeight: 360,        /* ← 最低高さ指定 */
-                borderRadius: 12,
-                objectFit: 'cover',
-                objectPosition: 'center top',  /* ← 上半身を優先表示 */
-                display: 'block',
-              }}
-            />
+              {/* ② 本文＋注釈（SP: order 3、画像の後） */}
+              <div className="strength-body">
+                <p className="text-base font-normal text-[#1e3a5f]" style={{ lineHeight: 1.85 }}>
+                  {item.body}
+                </p>
+                {item.footnote && (
+                  <p
+                    className="text-[11px] leading-relaxed text-[#1e3a5f]/50"
+                    style={{ marginTop: "8px" }}
+                  >
+                    {item.footnote}
+                  </p>
+                )}
+              </div>
+            </div>
+
+            {/* 画像ブロック（SP: order 2、見出しと本文の間） */}
+            <div
+              className={`strength-img-wrap flex items-center justify-center px-4 py-4 ${item.reverse ? "md:order-1" : "md:order-2"}`}
+            >
+              <img
+                src={item.image}
+                alt={item.heading}
+                className="w-full object-contain"
+                style={{ maxWidth: "238px" }}
+              />
+            </div>
           </div>
         </div>
-      </div>
+      ))}
 
-      {/* レスポンシブ調整 */}
       <style>{`
-        @media (max-width: 768px) {
-          .strength-cards {
-            grid-template-columns: 1fr !important;
+        @media (max-width: 767px) {
+
+          /* アイテム全体をflexに変えてorder制御 */
+          .strength-item-grid {
+            display: flex !important;
+            flex-direction: column !important;
+            padding: 16px 14px 22px !important;
+            margin: 0 12px 16px !important;
+            background: #ffffff !important;
+            border: 1px solid #e8e0d8 !important;
+            border-radius: 12px !important;
           }
-          .strength-team-inner {
-            grid-template-columns: 1fr !important;
+
+          /* テキストラッパーをflexの流れに溶け込ませる */
+          .strength-text-wrap {
+            display: contents !important;
           }
-          .strength-team-inner > div:last-child {
-            order: 2;
-            min-height: 260px !important;
-          }
-          .strength-team-inner > div:first-child {
+
+          /* 数字＋バッジ＋見出しブロック：SPでflex-wrapコンテナに変換 */
+          .strength-num-head {
             order: 1;
+            padding: 0 0 6px !important;
+            display: flex !important;
+            flex-wrap: wrap !important;
+            align-items: baseline !important;
+            gap: 4px 8px !important;
+          }
+
+          /* 内部divをcontentsに溶け込ませてflexの直接子にする */
+          .strength-num-head > div {
+            display: contents !important;
+          }
+
+          /* no-badge（01/02/03）：行の先頭（ゴールド） */
+          .strength-num-head > div:last-child > span:first-child {
+            font-size: 22px !important;
+            order: 1 !important;
+          }
+
+          /* メイン数字（1,000 / 即日 / 89）：バッジの右（赤） */
+          .strength-num-head > div:first-child > span:first-child {
+            font-size: 47px !important;
+            line-height: 1 !important;
+            order: 2 !important;
+          }
+
+          /* 数字サフィックス（件以上 / %）：数字の直後 */
+          .strength-num-head > div:first-child > span:last-child:not(:first-child) {
+            font-size: 22px !important;
+            order: 3 !important;
+          }
+
+          /* h3タイトル：flex-basis 100%で次行全幅 → 1行表示を確保 */
+          .strength-num-head h3 {
+            font-size: 26px !important;
+            line-height: 1.3 !important;
+            order: 4 !important;
+            flex-basis: 100% !important;
+            margin-top: 2px !important;
+          }
+
+          /* 画像：見出しの次 */
+          .strength-img-wrap {
+            order: 2;
+            padding: 2px 0 8px !important;
+          }
+          .strength-img-wrap img {
+            max-width: 155px !important;
+            margin: 0 auto !important;
+          }
+
+          /* 本文：画像の後 */
+          .strength-body {
+            order: 3;
           }
         }
       `}</style>
     </section>
-  );
+  )
 }

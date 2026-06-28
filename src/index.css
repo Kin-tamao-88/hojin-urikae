@@ -8,7 +8,7 @@
   }
 
   body {
-    @apply bg-cream font-sans text-ink antialiased;
+    @apply bg-white font-sans text-ink antialiased;
     text-rendering: optimizeLegibility;
   }
 }
@@ -27,7 +27,7 @@
     font-weight: 800;
     line-height: 1.1;
     letter-spacing: -0.01em;
-    color: #1a1a1a;
+    color: #1e3a5f;
     white-space: nowrap;
     word-break: keep-all;
   }
@@ -41,39 +41,29 @@
     word-break: keep-all;
   }
 
-  .hero-heading-main .hero-main-accent {
-    font-size: 110px;
+  .hero-heading-main .hero-main-gold {
+    font-size: 78px;
     font-weight: 900;
-    line-height: 0.9;
-    color: #e8550a;
+    line-height: 0.95;
+    color: #9a7a3a;
+  }
+
+  .hero-heading-main .hero-main-de {
+    font-size: 62px;
+    font-weight: 900;
+    color: #1e3a5f;
   }
 
   .hero-heading-close {
     width: 90%;
     margin: 0 0 22px 0;
     padding-left: 40px;
-    font-size: 62px;
-    font-weight: 900;
+    font-size: 48px;
+    font-weight: 800;
     line-height: 1;
-    color: #1a1a1a;
+    color: #1e3a5f;
     white-space: nowrap;
     word-break: keep-all;
-  }
-
-  .hero-close-marker {
-    position: relative;
-    display: inline-block;
-  }
-  .hero-close-marker::before {
-    content: '';
-    position: absolute;
-    left: -4px;
-    right: -4px;
-    bottom: 7px;
-    height: 30%;
-    background: rgba(232, 85, 10, 0.35);
-    border-radius: 2px 3px 2px 4px;
-    transform: rotate(-0.5deg) skewX(-0.8deg);
   }
 
   /* Hero 赤CTA：心拍のようなパルス（scale のみ／box-shadow禁止）。60秒バッジは子要素として一体で拡縮 */

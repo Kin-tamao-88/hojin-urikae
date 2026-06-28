@@ -1,211 +1,315 @@
-import { Mail, ChevronRight } from 'lucide-react'
-import heroConsultation from '../../assets/hero/hero-consultation.png'
-import jcaoLogo from '../../assets/hero/jcao-logo-top.png'
+import {
+  Building2,
+  Phone,
+  Mail,
+  ChevronRight,
+} from "lucide-react"
+import heroVisual from "../../assets/hero/01-hero-visual.png"
+import iconRedCompany from "../../assets/icons/01-icon-red-company.png"
+import iconDebt from "../../assets/icons/01-icon-debt.png"
+import iconNationwide from "../../assets/icons/01-icon-nationwide.png"
+import iconProfessionalSupport from "../../assets/icons/01-icon-professional-support.png"
+import laurelLeft from "../../assets/results/01-results-laurel-left.png"
 
-const NAVY = '#1a2744'
-const ORANGE = '#e8550a'
+const LAUREL_CLS = "h-[68px] w-[50px] shrink-0 object-contain"
+
+function StatValue({ value, size = 40 }: { value: string; size?: number }) {
+  return (
+    <div className="stat-value-wrap relative flex h-[60px] w-full items-center justify-center">
+      <img src={laurelLeft} alt="" aria-hidden className={`stat-laurel ${LAUREL_CLS} absolute left-[calc(50%-160px)] top-1/2 -translate-y-1/2`} />
+      <span className="stat-number whitespace-nowrap font-extrabold leading-none" style={{ color: GOLD, fontSize: `${size}px` }}>
+        {value}
+      </span>
+      <img src={laurelLeft} alt="" aria-hidden className={`stat-laurel ${LAUREL_CLS} absolute left-[calc(50%+110px)] top-1/2 -translate-y-1/2 -scale-x-100`} />
+    </div>
+  )
+}
+
+const NAVY = "#1e3a5f"
+const NAVY2 = "#16304d"
+const GOLD = "#E5C04A"
+const RED = "#b03023"
+const PAGE_BG = "#fafafa"
+
+const cards = [
+  { icon: iconRedCompany, label: "赤字法人", ok: true },
+  { icon: iconDebt, label: "債務あり", ok: true },
+  { icon: iconNationwide, label: "全国対応\n47都道府県", ok: false },
+  { icon: iconProfessionalSupport, label: "士業連携で\n安心サポート", ok: false },
+]
+
+const stats: { value: string; label: string; note: string; vSize?: number }[] = [
+  { value: "300件以上", label: "法人売却相談", note: "※2025年度実績" },
+  { value: "47都道府県", label: "全国対応", note: "", vSize: 32 },
+  { value: "100%", label: "秘密厳守", note: "プライバシー徹底保護" },
+  { value: "即日対応", label: "最短査定", note: "スピード査定", vSize: 36 },
+]
 
 export default function Hero() {
   return (
-    <>
+    <section id="hero" style={{ background: PAGE_BG }}>
+
       {/* ===== HEADER ===== */}
-      <header style={{
-        backgroundColor: '#ffffff',
-        borderBottom: '1px solid #e8e8e8',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        padding: '10px 32px',
-      }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <img src={jcaoLogo} alt="日本法人査定機構" style={{ height: '74px', width: 'auto', marginLeft: '16px' }} />
-        </div>
-        <a href="#contact" style={{
-          display: 'flex', alignItems: 'center', gap: '12px',
-          backgroundColor: ORANGE, color: '#ffffff',
-          padding: '12px 20px', textDecoration: 'none',
-        }}>
-          <Mail style={{ width: '16px', height: '16px', flexShrink: 0 }} />
-          <div style={{ textAlign: 'left' }}>
-            <div style={{ fontWeight: 700, fontSize: '0.9rem', lineHeight: 1.3 }}>法人価値を無料で診断する</div>
-            <div style={{ fontSize: '0.68rem', opacity: 0.9, lineHeight: 1.3 }}>24時間受付中</div>
+      <header className="w-full bg-white" style={{ borderBottom: `1px solid ${NAVY}1a` }}>
+        <div className="mx-auto flex w-full max-w-[1536px] items-center justify-between px-4 md:px-10 h-[64px] md:h-[96px]">
+
+          {/* ロゴ */}
+          <a href="#hero" className="flex items-center gap-2 md:gap-3.5">
+            <span className="flex h-9 w-9 md:h-12 md:w-12 items-center justify-center rounded-md" style={{ background: NAVY, color: GOLD }}>
+              <Building2 className="h-5 w-5 md:h-7 md:w-7" strokeWidth={1.75} />
+            </span>
+            <span className="flex flex-col leading-tight">
+              <span className="text-[16px] md:text-[22px] font-extrabold tracking-tight" style={{ color: NAVY }}>法人売却センター</span>
+              <span className="hidden md:block text-[12px]" style={{ color: NAVY }}>法人の売却・譲渡を専門サポート</span>
+            </span>
+          </a>
+
+          {/* 電話番号（SP非表示） */}
+          <div className="hidden md:flex flex-col items-center leading-tight">
+            <span className="text-[12px]" style={{ color: NAVY }}>お急ぎの方はお電話でご相談ください</span>
+            <a href="tel:03-0000-0000" className="flex items-center gap-2 text-[32px] font-black" style={{ color: NAVY }}>
+              <Phone className="h-6 w-6" strokeWidth={2.5} style={{ color: GOLD }} />
+              03-XXXX-XXXX
+            </a>
+            <span className="text-[11px]" style={{ color: NAVY }}>受付時間 9:00-18:00（土日祝日を除く）</span>
           </div>
-          <ChevronRight style={{ width: '16px', height: '16px', flexShrink: 0 }} />
-        </a>
+
+          {/* CTAボタン */}
+          <div className="flex flex-col items-center gap-1">
+            <a
+              href="#contact"
+              className="flex items-center gap-1.5 md:gap-2 rounded-md border-2 bg-white px-3 md:px-8 py-2 md:py-3.5 text-[14px] md:text-[18px] font-extrabold"
+              style={{ color: NAVY, borderColor: NAVY }}
+            >
+              <Mail className="h-[18px] w-[18px] md:h-[22px] md:w-[22px] shrink-0" strokeWidth={2} />
+              {/* SP用テキスト */}
+              <span className="header-cta-sp">無料査定</span>
+              {/* PC用テキスト */}
+              <span className="header-cta-pc">無料で査定してみる</span>
+            </a>
+            <span className="text-[11px] font-extrabold" style={{ color: GOLD }}>24時間受付中</span>
+          </div>
+        </div>
       </header>
 
-      {/* ===== HERO SECTION ===== */}
-      <section style={{
-        position: 'relative',
-        overflow: 'hidden',
-        backgroundColor: '#F5F2EC',
-        height: '560px',
-      }}>
+      {/* ===== HERO MAIN ===== */}
+      <div className="w-full px-[6px] py-[6px] md:px-[10px] md:py-[10px]">
+        <div className="mx-auto w-full max-w-[1516px]">
+          <div className="relative flex flex-col md:flex-row overflow-hidden bg-white">
 
-        {/* 右ブリード画像 */}
-        <div style={{
-          position: 'absolute',
-          right: 0,
-          top: 0,
-          width: '55%',
-          height: '100%',
-        }}>
-          <img
-            src={heroConsultation}
-            alt="法人の無料相談の様子"
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              objectPosition: 'center',
-              display: 'block',
-            }}
-          />
-          {/* 左端フェードオーバーレイ */}
-          <div style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            background: 'linear-gradient(to right, #F5F2EC 0%, transparent 25%)',
-            pointerEvents: 'none',
-          }} />
-        </div>
-
-        {/* テキストエリア */}
-        <div style={{
-          position: 'relative',
-          zIndex: 10,
-          maxWidth: '1280px',
-          margin: '0 auto',
-          padding: '0 64px',
-          height: '100%',
-          display: 'flex',
-          alignItems: 'center',
-        }}>
-          <div style={{ width: '45%' }}>
-
-            {/* 1行目 */}
-            <p style={{ fontSize: '35px', color: NAVY, fontWeight: 500, margin: '0 0 8px 0', lineHeight: 1.1 }}>
-              不要な法人が
-            </p>
-
-            {/* 2行目 */}
-            <h1 style={{
-              fontSize: '60px',
-              color: ORANGE,
-              fontWeight: 900,
-              lineHeight: 1.1,
-              margin: 0,
-              whiteSpace: 'nowrap',
-            }}>
-              高額資金に変わる
-            </h1>
-
-            {/* 2行目下 直線アンダーライン */}
-            <div style={{
-              height: '3px',
-              background: ORANGE,
-              width: '70%',
-              marginTop: '6px',
-              marginBottom: '20px',
-            }} />
-
-            {/* 3行目 */}
-            <p style={{ fontSize: '30px', color: '#1a2744', fontWeight: 500, marginBottom: '20px' }}>
-              <span style={{ background: 'linear-gradient(transparent 60%, #FFE066 60%)' }}>
-                法人査定は<span style={{ position: 'relative', display: 'inline-block' }}>JCAO</span>にご相談ください。
+            {/* 左カラム：テキスト */}
+            <div
+              className="relative flex flex-col py-[28px] px-[20px] md:py-[40px] md:pl-[60px] md:pr-[16px]"
+              style={{ flexBasis: "auto" }}
+            >
+              {/* バッジ */}
+              <span className="inline-flex w-fit items-center rounded-lg px-[16px] md:px-[26px] py-[10px] md:py-[14px] text-[14px] md:text-[18px] font-extrabold" style={{ background: NAVY, color: GOLD }}>
+                赤字・債務・休眠法人もご相談可能
               </span>
-            </p>
 
-            {/* 5〜6行目 */}
-            <p style={{ fontSize: '21px', color: '#374151', margin: '0 0 4px 0' }}>
-              休眠法人・赤字法人・債務超過法人にも
-            </p>
-            <p style={{ fontSize: '21px', color: '#374151', margin: 0 }}>
-              価値が残っている可能性があります。
-            </p>
+              {/* メインコピー */}
+              <p className="mt-3 text-[22px] md:text-[28px] font-extrabold leading-tight" style={{ color: NAVY }}>
+                放置している法人を
+              </p>
+
+              {/* 高額 / で売却しませんか？ */}
+              <div style={{ paddingLeft: "24px", lineHeight: 1.05, letterSpacing: "-0.02em" }}>
+                <span style={{ fontSize: "clamp(56px, 18vw, 100px)", fontWeight: 900, color: "#c0341a", display: "block" }}>高額</span>
+                {/* ↓ 修正2: で売却しませんか？を10〜15%縮小 clamp(36px→30px, 11vw→9vw) */}
+                <span style={{ position: "relative", display: "inline-block", fontSize: "clamp(30px, 9vw, 72px)", fontWeight: 900, lineHeight: 1.1, color: "#1a1a1a", whiteSpace: "nowrap" }}>
+                  <span aria-hidden style={{ position: "absolute", left: 0, right: 0, bottom: "0.05em", height: "0.28em", background: "rgba(200,165,38,0.80)", borderRadius: "1px 2px 1px 2px", transform: "rotate(-0.3deg)", zIndex: 0 }} />
+                  <span style={{ position: "relative" }}>で売却しませんか？</span>
+                </span>
+              </div>
+
+              {/* サブコピー：zIndex 2 で画像より確実に前面 */}
+              <p className="mt-2 md:mt-3 text-[16px] md:text-[22px] font-semibold leading-relaxed" style={{ color: NAVY, position: "relative", zIndex: 2 }}>
+                法人売却・事業承継の専門チームが<br />
+                全国対応・秘密厳守でサポートいたします
+              </p>
+
+              {/* SP画像：zIndex 0 でテキストの後面・上端80pxで強フェード */}
+              <div className="md:hidden w-full -mx-[20px]" style={{ position: "relative", width: "calc(100% + 40px)", marginTop: "-4px", zIndex: 0 }}>
+                {/* 上端グラデーション：上25%を白で塗り潰し、文字エリアを完全カバー */}
+                <div
+                  aria-hidden
+                  style={{
+                    position: "absolute", top: 0, left: 0, right: 0,
+                    height: "48px",
+                    background: "linear-gradient(to bottom, #ffffff 0%, rgba(255,255,255,0.5) 50%, transparent 100%)",
+                    pointerEvents: "none",
+                    zIndex: 1,
+                  }}
+                />
+                <img
+                  src={heroVisual}
+                  alt="法人売却センター 担当者とオフィスビル群"
+                  className="w-full object-cover"
+                  style={{ height: "205px", objectPosition: "22% 18%" }}
+                />
+                {/* 1,100万円バッジ（SP用） */}
+                <div
+                  className="absolute right-3 bottom-3 flex flex-col items-center rounded-lg px-3 py-2"
+                  style={{ background: "rgba(255,255,255,0.92)", border: `2px solid ${RED}` }}
+                >
+                  <span className="text-[11px] font-extrabold" style={{ color: RED }}>査定最高額</span>
+                  <span className="font-black leading-none" style={{ color: RED, fontSize: "28px" }}>1,100<span style={{ fontSize: "18px" }}>万円！</span></span>
+                  <span className="text-[10px] font-bold" style={{ color: NAVY }}>当日払いの実績アリ</span>
+                </div>
+              </div>
+
+              {/* カード4枚 */}
+              <div className="mt-4 grid grid-cols-2 md:grid-cols-4 gap-[8px] md:gap-[10px]">
+                {cards.map((card) => (
+                  <div
+                    key={card.label}
+                    className="flex items-center justify-center gap-[8px] md:gap-[12px] rounded-lg bg-white py-3 px-2"
+                    style={{ border: `1px solid ${NAVY}22` }}
+                  >
+                    <img src={card.icon} alt="" aria-hidden className="h-[32px] w-[32px] md:h-[40px] md:w-[40px] shrink-0 object-contain" />
+                    <span className="whitespace-pre-line text-[13px] md:text-[16px] font-extrabold leading-tight" style={{ color: NAVY }}>
+                      {card.label}
+                      {card.ok && <span style={{ color: RED }}>OK</span>}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              {/* CTAボタン */}
+              <div className="relative mt-4 w-full">
+                <a
+                  href="#contact"
+                  className="hero-cta-pulse relative flex w-full items-center justify-center rounded-lg px-[20px] md:px-[32px] font-extrabold text-white"
+                  style={{ background: RED, height: "clamp(64px, 12vw, 84px)" }}
+                >
+                  <span
+                    className="absolute left-[6px] md:left-[8px] top-1/2 flex h-[52px] md:h-[64px] w-[52px] md:w-[64px] -translate-y-1/2 flex-col items-center justify-center rounded-md text-center text-[10px] md:text-[11px] font-extrabold leading-tight"
+                    style={{ background: GOLD, color: NAVY }}
+                  >
+                    簡単60秒<br />入力
+                  </span>
+                  <span className="flex items-center gap-[10px] md:gap-[14px]" style={{ fontSize: "clamp(18px, 5vw, 28px)" }}>
+                    <Mail className="h-[22px] w-[22px] md:h-[28px] md:w-[28px] shrink-0" strokeWidth={2.25} />
+                    <span>無料で査定してみる</span>
+                  </span>
+                  <ChevronRight className="absolute right-[16px] md:right-[28px] top-1/2 h-[22px] w-[22px] md:h-[26px] md:w-[26px] -translate-y-1/2" strokeWidth={2.5} />
+                </a>
+              </div>
+
+              <p className="mt-2 text-center text-[13px] md:text-[14px]" style={{ color: NAVY }}>
+                査定だけでもOK｜しつこい営業は一切いたしません
+              </p>
+            </div>
+
+            {/* 右カラム：漫画画像（PC表示・SP非表示） */}
+            <div className="hidden md:block relative overflow-hidden" style={{ flexBasis: "42%", flexShrink: 0 }}>
+              <img
+                src={heroVisual}
+                alt="法人売却センター 担当者とオフィスビル群"
+                className="absolute inset-0 h-full w-full object-cover"
+                style={{ objectPosition: "22% 18%" }}
+              />
+              <div
+                className="pointer-events-none absolute inset-0"
+                aria-hidden
+                style={{
+                  background: "linear-gradient(to right, #fff 0%, rgba(255,255,255,0.7) 5%, rgba(255,255,255,0) 16%)",
+                  backdropFilter: "blur(1.5px)",
+                  WebkitBackdropFilter: "blur(1.5px)",
+                  maskImage: "linear-gradient(to right, black 0%, black 8%, transparent 18%)",
+                  WebkitMaskImage: "linear-gradient(to right, black 0%, black 8%, transparent 18%)",
+                }}
+              />
+            </div>
+
+            {/* 査定最高額：絶対配置（PC専用） */}
+            <div
+              className="pointer-events-none absolute left-[41%] top-[60px] z-30 hidden md:flex flex-col items-start"
+              style={{ transform: "rotate(-6deg)", transformOrigin: "left center" }}
+              aria-hidden
+            >
+              <span className="whitespace-nowrap leading-none" style={{ fontSize: "37px", fontWeight: 800, color: RED }}>
+                査定最高額
+              </span>
+              <div className="relative mt-[12px]">
+                <svg
+                  className="absolute -left-[10px] -bottom-[12px] -z-10 h-[48px] w-[420px]"
+                  viewBox="0 0 420 50"
+                  fill="none"
+                  preserveAspectRatio="none"
+                >
+                  <defs>
+                    <linearGradient id="heroBrush" x1="0" y1="1" x2="1" y2="0">
+                      <stop offset="0%" stopColor="#E5C04A" />
+                      <stop offset="100%" stopColor="#E5C04A" />
+                    </linearGradient>
+                  </defs>
+                  <path d="M4 44 C 60 36, 130 30, 220 20 C 300 12, 360 10, 415 4 C 390 18, 330 22, 248 30 C 158 38, 72 42, 10 50 Z" fill="url(#heroBrush)" opacity="0.95" />
+                  <path d="M6 42 C 80 34, 180 26, 310 16 C 360 12, 395 8, 414 5 C 400 14, 365 18, 318 22 C 200 30, 90 38, 12 47 Z" fill="#E5C04A" opacity="0.35" />
+                  <path d="M30 37 C 140 30, 260 23, 380 12" stroke="#ffffff" strokeOpacity="0.4" strokeWidth="1.6" strokeLinecap="round" />
+                  <path d="M22 42 C 150 34, 270 28, 392 16" stroke="#846526" strokeOpacity="0.5" strokeWidth="1.3" strokeLinecap="round" />
+                  <path d="M318 19 l 16 -2 M348 16 l 20 -3 M384 11 l 18 -3" stroke="#E5C04A" strokeWidth="3" strokeLinecap="round" opacity="0.85" />
+                </svg>
+                <span className="relative whitespace-nowrap leading-none" style={{ color: RED }}>
+                  <span style={{ fontSize: "84px", fontWeight: 900 }}>1,100</span>
+                  <span style={{ fontSize: "52px", fontWeight: 700, marginLeft: "2px" }}>万円</span>
+                  <span style={{ fontSize: "52px", fontWeight: 700, marginLeft: "4px" }}>！</span>
+                </span>
+              </div>
+              <span className="mt-[16px] whitespace-nowrap leading-none" style={{ fontSize: "24px", fontWeight: 700, color: NAVY }}>
+                当日払いの実績アリ
+              </span>
+              <span className="mt-[8px] self-center whitespace-nowrap" style={{ fontSize: "13px", fontWeight: 600, color: NAVY }}>
+                （負債有り法人の実績）
+              </span>
+            </div>
 
           </div>
+
+          {/* ===== 実績バー ===== */}
+          <div className="grid grid-cols-2 md:grid-cols-4 w-full" style={{ background: NAVY }}>
+            {stats.map((stat, i) => (
+              <div
+                key={stat.label}
+                className="flex flex-col items-center justify-center gap-[4px] md:gap-[6px] text-center py-3.5 md:py-0 md:h-[150px]"
+                style={i % 2 !== 0 ? { borderLeft: `1px solid ${NAVY2}` } : undefined}
+              >
+                <span className="text-[13px] md:text-[16px] font-extrabold text-white/90">{stat.label}</span>
+                <StatValue value={stat.value} size={stat.vSize} />
+                <span className="text-[10px] md:text-[13px] text-white/70">{stat.note || " "}</span>
+              </div>
+            ))}
+          </div>
+
         </div>
-      </section>
+      </div>
 
-      {/* ===== 3カラム特徴エリア ===== */}
-      <section style={{
-        backgroundColor: '#ffffff',
-        borderTop: '1px solid #e5e7eb',
-        padding: '40px 0',
-      }}>
-        <div style={{
-          maxWidth: '1280px',
-          margin: '0 auto',
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr 1fr',
-        }}>
+      {/* ===== レスポンシブ調整 ===== */}
+      <style>{`
+        /* ヘッダーCTA：PCはSP用テキストを隠す、SPはPC用テキストを隠す */
+        .header-cta-sp { display: none; }
+        .header-cta-pc { display: inline; }
 
-          {/* 01 */}
-          <div style={{ borderRight: '1px solid #e5e7eb', padding: '0 48px' }}>
-            <div style={{
-              width: '36px', height: '36px', borderRadius: '50%',
-              backgroundColor: ORANGE, color: '#ffffff',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontWeight: 700, fontSize: '14px',
-              marginBottom: '16px',
-            }}>01</div>
-            <h3 style={{ fontSize: '20px', fontWeight: 700, color: NAVY, margin: '0 0 12px 0' }}>
-              価値が残る可能性
-            </h3>
-            <p style={{ fontSize: '16px', color: '#374151', lineHeight: 1.7, margin: 0 }}>
-              解散前に査定することで、思わぬ価値が見つかる場合があります。
-            </p>
-          </div>
+        /* 修正5: SP実績バー 月桂樹非表示・数字縮小 */
+        @media (max-width: 767px) {
+          .header-cta-sp { display: inline; }
+          .header-cta-pc { display: none; }
 
-          {/* 02 */}
-          <div style={{ borderRight: '1px solid #e5e7eb', padding: '0 48px' }}>
-            <div style={{
-              width: '36px', height: '36px', borderRadius: '50%',
-              backgroundColor: ORANGE, color: '#ffffff',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontWeight: 700, fontSize: '14px',
-              marginBottom: '16px',
-            }}>02</div>
-            <h3 style={{ fontSize: '20px', fontWeight: 700, color: NAVY, margin: '0 0 12px 0' }}>
-              最短即日査定
-            </h3>
-            <p style={{ fontSize: '16px', color: '#374151', lineHeight: 1.7, margin: 0 }}>
-              売却可能性をスピーディーに確認できます。
-            </p>
-          </div>
+          .stat-laurel {
+            display: none !important;
+          }
+          .stat-value-wrap {
+            height: auto !important;
+            padding: 4px 8px;
+          }
+          .stat-number {
+            font-size: 22px !important;
+            white-space: normal !important;
+            word-break: keep-all;
+          }
+        }
+      `}</style>
 
-          {/* 03 */}
-          <div style={{ padding: '0 48px' }}>
-            <div style={{
-              width: '36px', height: '36px', borderRadius: '50%',
-              backgroundColor: ORANGE, color: '#ffffff',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontWeight: 700, fontSize: '14px',
-              marginBottom: '16px',
-            }}>03</div>
-            <h3 style={{ fontSize: '20px', fontWeight: 700, color: NAVY, margin: '0 0 12px 0' }}>
-              来店不要で完結
-            </h3>
-            <p style={{ fontSize: '16px', color: '#374151', lineHeight: 1.7, margin: 0 }}>
-              全国どこからでもオンラインで手続きが可能です。
-            </p>
-          </div>
-        </div>
-
-        <p style={{
-          fontSize: '12px',
-          color: '#9ca3af',
-          textAlign: 'center',
-          padding: '12px 0',
-          margin: 0,
-        }}>
-          ※法令・定款・契約内容等により、買取できない場合があります。
-        </p>
-      </section>
-    </>
+    </section>
   )
 }
