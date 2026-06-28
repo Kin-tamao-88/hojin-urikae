@@ -211,7 +211,7 @@ export default function Hero() {
 
             {/* 査定最高額：絶対配置（PC専用） */}
             <div
-              className="pointer-events-none absolute left-[41%] top-[55px] z-30 hidden md:flex flex-col items-start"
+              className="pointer-events-none absolute left-[41%] top-[20px] z-30 hidden md:flex flex-col items-start"
               style={{ transform: "rotate(-6deg)", transformOrigin: "left center" }}
               aria-hidden
             >
