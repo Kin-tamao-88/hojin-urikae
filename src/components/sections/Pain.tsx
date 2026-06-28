@@ -38,7 +38,7 @@ const CARD_SHADOW = "0 4px 20px rgba(0,0,0,0.06)"
 
 export function Pain() {
   return (
-    <section className="bg-white pt-12 pb-10 md:py-24">
+    <section className="bg-white pt-12 pb-10 md:pt-24 md:pb-8">
       <div className="container-lp flex flex-col gap-10 md:gap-14">
         {/* ───────── セクション見出し ───────── */}
         <div className="flex flex-col items-center gap-3 text-center md:gap-5">

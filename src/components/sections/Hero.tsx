@@ -1,6 +1,5 @@
 import {
   Building2,
-  Phone,
   Mail,
   ChevronRight,
 } from "lucide-react"
@@ -64,16 +63,6 @@ export default function Hero() {
             </span>
           </a>
 
-          {/* 電話番号（SP非表示） */}
-          <div className="hidden md:flex flex-col items-center leading-tight">
-            <span className="text-[12px]" style={{ color: NAVY }}>お急ぎの方はお電話でご相談ください</span>
-            <a href="tel:03-0000-0000" className="flex items-center gap-2 text-[32px] font-black" style={{ color: NAVY }}>
-              <Phone className="h-6 w-6" strokeWidth={2.5} style={{ color: GOLD }} />
-              03-XXXX-XXXX
-            </a>
-            <span className="text-[11px]" style={{ color: NAVY }}>受付時間 9:00-18:00（土日祝日を除く）</span>
-          </div>
-
           {/* CTAボタン */}
           <div className="flex flex-col items-center gap-1">
             <a
@@ -112,13 +101,11 @@ export default function Hero() {
                 放置している法人を
               </p>
 
-              {/* 高額 / で売却しませんか？ */}
+              {/* 高額で売却しませんか？ */}
               <div style={{ paddingLeft: "24px", lineHeight: 1.05, letterSpacing: "-0.02em" }}>
-                <span style={{ fontSize: "clamp(56px, 18vw, 100px)", fontWeight: 900, color: "#c0341a", display: "block" }}>高額</span>
-                {/* ↓ 修正2: で売却しませんか？を10〜15%縮小 clamp(36px→30px, 11vw→9vw) */}
-                <span style={{ position: "relative", display: "inline-block", fontSize: "clamp(30px, 9vw, 72px)", fontWeight: 900, lineHeight: 1.1, color: "#1a1a1a", whiteSpace: "nowrap" }}>
+                <span className="hero-main-copy" style={{ position: "relative", display: "inline-block", fontSize: "clamp(30px, 9vw, 72px)", fontWeight: 900, lineHeight: 1.1, color: "#1a1a1a", whiteSpace: "nowrap" }}>
                   <span aria-hidden style={{ position: "absolute", left: 0, right: 0, bottom: "0.05em", height: "0.28em", background: "rgba(200,165,38,0.80)", borderRadius: "1px 2px 1px 2px", transform: "rotate(-0.3deg)", zIndex: 0 }} />
-                  <span style={{ position: "relative" }}>で売却しませんか？</span>
+                  <span style={{ position: "relative" }}><span style={{ color: "#c0341a" }}>高額で</span>売却しませんか？</span>
                 </span>
               </div>
 
@@ -220,14 +207,13 @@ export default function Hero() {
                   WebkitMaskImage: "linear-gradient(to right, black 0%, black 8%, transparent 18%)",
                 }}
               />
-            </div>
 
-            {/* 査定最高額：絶対配置（PC専用） */}
-            <div
-              className="pointer-events-none absolute left-[41%] top-[60px] z-30 hidden md:flex flex-col items-start"
-              style={{ transform: "rotate(-6deg)", transformOrigin: "left center" }}
-              aria-hidden
-            >
+              {/* 査定最高額：右カラム内絶対配置（PC専用） */}
+              <div
+                className="pointer-events-none absolute left-[4%] top-[40px] z-30 flex flex-col items-start"
+                style={{ transform: "rotate(-6deg)", transformOrigin: "left center" }}
+                aria-hidden
+              >
               <span className="whitespace-nowrap leading-none" style={{ fontSize: "37px", fontWeight: 800, color: RED }}>
                 査定最高額
               </span>
@@ -262,6 +248,7 @@ export default function Hero() {
               <span className="mt-[8px] self-center whitespace-nowrap" style={{ fontSize: "13px", fontWeight: 600, color: NAVY }}>
                 （負債有り法人の実績）
               </span>
+              </div>
             </div>
 
           </div>
@@ -294,6 +281,10 @@ export default function Hero() {
         @media (max-width: 767px) {
           .header-cta-sp { display: inline; }
           .header-cta-pc { display: none; }
+
+          .hero-main-copy {
+            font-size: 24px !important;
+          }
 
           .stat-laurel {
             display: none !important;

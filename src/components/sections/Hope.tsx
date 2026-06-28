@@ -7,7 +7,7 @@ import hopePerson from "../../assets/pain/03-pain-business-executive.png"
  */
 export function Hope() {
   return (
-    <section className="bg-white pt-4 pb-2 md:pt-14 md:pb-6">
+    <section className="bg-white pt-4 pb-2 md:pt-4 md:pb-6">
       <div className="container-lp flex flex-col items-center">
         {/* 人物 ＋ 見出し（縦中央揃え・1つの塊／全体を少し左へ寄せ左余白を解消） */}
         <div className="flex items-center justify-center gap-5 md:gap-6 md:-translate-x-5">
